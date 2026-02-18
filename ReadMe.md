@@ -1,11 +1,13 @@
-**🌳 CayGiaPha (Family Tree App)**
+## 🌳 CayGiaPha (Family Tree App)
 
 CayGiaPha is a desktop application for creating and visualizing family trees.
 It allows users to manage people, relationships, and branches in a structured and interactive graphical view.
 
 Built with C++, Qt6, and CMake.
 
-**✨ Features**
+---
+
+## ✨ Features 
 
 📌 Interactive family tree visualization
 
@@ -21,7 +23,9 @@ Built with C++, Qt6, and CMake.
 
 🖱️ Context menus and inspector panel for editing
 
-**🧱 Tech Stack**
+---
+
+## 🧱 Tech Stack
 
 C++17
 
@@ -35,7 +39,9 @@ PrintSupport
 
 CMake ≥ 3.16
 
-**📂 Project Structure**
+---
+
+## 📂 Project Structure
 `
 .
 ├── app/        # Application bootstrap
@@ -45,7 +51,9 @@ CMake ≥ 3.16
 ├── main.cpp
 └── CMakeLists.txt
 `
-**⚙️ Requirements**
+---
+
+## ⚙️ Requirements
 
 Make sure you have:
 
@@ -57,7 +65,9 @@ A C++17 compatible compiler
 
 GCC / Clang / MSVC
 
-**🚀 Build Instructions**
+---
+
+## 🚀 Build Instructions
 ``
 Linux / macOS
 mkdir build
@@ -97,7 +107,9 @@ This copies required Qt DLLs and plugins.
 
 You can then package the folder or create an installer.
 
-**🛠️ Development Notes**
+---
+
+## 🛠️ Development Notes
 
 CMake features enabled:
 
@@ -118,7 +130,9 @@ project(CayGiaPha VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-**📌 Roadmap (Ideas)**
+---
+
+## 📌 Roadmap (Ideas)
 
 Multi-page PDF export
 
@@ -130,7 +144,9 @@ Drag-and-drop tree editing
 
 Cross-platform installers
 
-**🤝 Contributing**
+---
+
+## 🤝 Contributing
 
 Contributions are welcome!
 
@@ -140,6 +156,9 @@ Create a feature branch
 
 Submit a pull request
 
-**👤 Author**
+---
+
+## 👤 Author
 Justanotherson-111
+
 
