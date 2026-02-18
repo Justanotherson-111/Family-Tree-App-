@@ -42,7 +42,6 @@ CMake ≥ 3.16
 ---
 
 ## 📂 Project Structure
-`
 .
 ├── app/        # Application bootstrap
 ├── core/       # Business logic, entities, rules, services
@@ -50,7 +49,7 @@ CMake ≥ 3.16
 ├── ui/         # Qt UI components and controllers
 ├── main.cpp
 └── CMakeLists.txt
-`
+
 ---
 
 ## ⚙️ Requirements
@@ -160,5 +159,6 @@ Submit a pull request
 
 ## 👤 Author
 Justanotherson-111
+
 
 
