@@ -1,0 +1,11 @@
+core_autogen/timestamp: \
+	/mnt/VolumeD/family-tree-app/src/core/CMakeLists.txt \
+	/mnt/VolumeD/family-tree-app/src/core/FamilyTree.cpp \
+	/mnt/VolumeD/family-tree-app/src/core/FamilyTree.h \
+	/mnt/VolumeD/family-tree-app/src/core/entities/PersonNode.cpp \
+	/mnt/VolumeD/family-tree-app/src/core/entities/PersonNode.h \
+	/mnt/VolumeD/family-tree-app/src/core/rules/FamilyRules.cpp \
+	/mnt/VolumeD/family-tree-app/src/core/rules/FamilyRules.h \
+	/mnt/VolumeD/family-tree-app/src/core/services/BranchAnalyzer.cpp \
+	/mnt/VolumeD/family-tree-app/src/core/services/BranchAnalyzer.h \
+	/usr/bin/cmake

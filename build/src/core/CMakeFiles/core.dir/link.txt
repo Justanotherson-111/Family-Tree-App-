@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcore.a CMakeFiles/core.dir/core_autogen/mocs_compilation.cpp.o CMakeFiles/core.dir/FamilyTree.cpp.o CMakeFiles/core.dir/entities/PersonNode.cpp.o CMakeFiles/core.dir/rules/FamilyRules.cpp.o CMakeFiles/core.dir/services/BranchAnalyzer.cpp.o
+/usr/bin/ranlib libcore.a

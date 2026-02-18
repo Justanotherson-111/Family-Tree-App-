@@ -1,0 +1,2 @@
+/usr/bin/ar qc libui.a CMakeFiles/ui.dir/ui_autogen/mocs_compilation.cpp.o CMakeFiles/ui.dir/FamilyTreeView.cpp.o CMakeFiles/ui.dir/PersonItem.cpp.o CMakeFiles/ui.dir/FamilyController.cpp.o CMakeFiles/ui.dir/MenuView.cpp.o CMakeFiles/ui.dir/MenuController.cpp.o CMakeFiles/ui.dir/PersonInspector.cpp.o
+/usr/bin/ranlib libui.a
