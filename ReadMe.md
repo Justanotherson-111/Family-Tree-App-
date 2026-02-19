@@ -71,17 +71,17 @@ GCC / Clang / MSVC
 ## 🐧 Linux / macOS
 
 On Linux (or Unix-like systems such as macOS)
-
+```
 mkdir build
 cd build
 cmake ..
 cmake --build .
-
+```
 
 Run:
-
+```
 ./CayGiaPha
-
+```
 
 The executable runs directly from the build folder.
 No additional deployment step is usually required on the same machine.
@@ -89,25 +89,25 @@ No additional deployment step is usually required on the same machine.
 ## 🪟 Windows (Qt + MSVC or MinGW)
 
 On Windows, you must build in Release mode to create a distributable executable.
-
+```
 mkdir build
 cd build
 cmake ..
 cmake --build . --config Release
-
+```
 
 Run:
-
+```
 Release\CayGiaPha.exe
-
+```
 ## 📦 Deployment (Windows Only)
 
 Unlike Linux/macOS, Windows requires copying Qt runtime libraries.
 
 After building in Release mode:
-
+```
 windeployqt Release\CayGiaPha.exe
-
+```
 
 This tool copies all required Qt DLLs and plugins into the Release folder.
 
@@ -172,6 +172,7 @@ Submit a pull request
 
 # 👤 Author
 Justanotherson-111
+
 
 
 
