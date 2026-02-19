@@ -1,4 +1,4 @@
-## 🌳 CayGiaPha (Family Tree App)
+# 🌳 CayGiaPha (Family Tree App)
 
 CayGiaPha is a desktop application for creating and visualizing family trees.
 It allows users to manage people, relationships, and branches in a structured and interactive graphical view.
@@ -7,7 +7,7 @@ Built with C++, Qt6, and CMake.
 
 ---
 
-## ✨ Features 
+# ✨ Features 
 
 📌 Interactive family tree visualization
 
@@ -25,7 +25,7 @@ Built with C++, Qt6, and CMake.
 
 ---
 
-## 🧱 Tech Stack
+# 🧱 Tech Stack
 
 C++17
 
@@ -41,7 +41,7 @@ CMake ≥ 3.16
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 ```
 .
 ├── app/        # Application bootstrap
@@ -53,7 +53,7 @@ CMake ≥ 3.16
 ```
 ---
 
-## ⚙️ Requirements
+# ⚙️ Requirements
 
 Make sure you have:
 
@@ -67,8 +67,8 @@ GCC / Clang / MSVC
 
 ---
 
-## 🚀 Build Instructions
-# 🐧 Linux / macOS
+# 🚀 Build Instructions
+## 🐧 Linux / macOS
 
 On Linux (or Unix-like systems such as macOS)
 
@@ -86,7 +86,7 @@ Run:
 The executable runs directly from the build folder.
 No additional deployment step is usually required on the same machine.
 
-# 🪟 Windows (Qt + MSVC or MinGW)
+## 🪟 Windows (Qt + MSVC or MinGW)
 
 On Windows, you must build in Release mode to create a distributable executable.
 
@@ -100,7 +100,7 @@ Run:
 
 Release\CayGiaPha.exe
 
-# 📦 Deployment (Windows Only)
+## 📦 Deployment (Windows Only)
 
 Unlike Linux/macOS, Windows requires copying Qt runtime libraries.
 
@@ -121,7 +121,7 @@ Or create a Windows installer
 
 ---
 
-## 🛠️ Development Notes
+# 🛠️ Development Notes
 
 CMake features enabled:
 
@@ -144,7 +144,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 ---
 
-## 📌 Roadmap (Ideas)
+# 📌 Roadmap (Ideas)
 
 Multi-page PDF export
 
@@ -158,7 +158,7 @@ Cross-platform installers
 
 ---
 
-## 🤝 Contributing
+# 🤝 Contributing
 
 Contributions are welcome!
 
@@ -170,8 +170,9 @@ Submit a pull request
 
 ---
 
-## 👤 Author
+# 👤 Author
 Justanotherson-111
+
 
 
 
