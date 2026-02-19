@@ -11,6 +11,8 @@ add_library(ui
     MenuController.cpp
     PersonInspector.h
     PersonInspector.cpp
+    PersonInfoWidget.h
+    PersonInfoWidget.cpp
 )
 
 target_include_directories(ui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -58,6 +58,18 @@ namespace ui
         m_deathDateEdit->setDate(QDate()); // invalid by default
         layout->addWidget(m_deathDateEdit);
 
+        // Notes
+        layout->addWidget(new QLabel("Note:"));
+        m_noteEdit = new QLineEdit(this);
+        layout->addWidget(m_noteEdit);
+
+        // ===== Ancestral Line =====
+        layout->addWidget(new QLabel("Ancestral Line:"));
+        m_ancestralLineLabel = new QLabel(this);
+        m_ancestralLineLabel->setWordWrap(true);
+        m_ancestralLineLabel->setStyleSheet("color: gray;");
+        layout->addWidget(m_ancestralLineLabel);
+
         layout->addStretch();
 
         // Connections
@@ -76,6 +88,15 @@ namespace ui
         connect(m_deathDateEdit, &QDateEdit::dateChanged,
                 this, &PersonInspector::onDeathDateChanged);
 
+        connect(m_noteEdit, &QLineEdit::editingFinished,
+                this, [this]()
+                {
+    if (!m_person)
+        return;
+
+    m_person->setNote(m_noteEdit->text());
+    emit personEdited(m_person, false); });
+
         setEditorsEnabled(false);
     }
 
@@ -87,6 +108,23 @@ namespace ui
     {
         m_person = person;
         updateUiFromPerson();
+    }
+    static QString buildAncestralLine(PersonNode *person)
+    {
+        if (!person)
+            return QString();
+
+        QStringList chain;
+
+        PersonNode *current = person;
+
+        while (current)
+        {
+            chain.prepend(current->name());
+            current = current->father(); // paternal line
+        }
+
+        return chain.join("  →  ");
     }
 
     ////////////////////////////////////////////////////////////
@@ -100,12 +138,15 @@ namespace ui
         QSignalBlocker b3(m_jobEdit);
         QSignalBlocker b4(m_birthDateEdit);
         QSignalBlocker b5(m_deathDateEdit);
+        QSignalBlocker b6(m_noteEdit);
 
         if (!m_person)
         {
             m_idLabel->clear();
             m_nameEdit->clear();
             m_jobEdit->clear();
+            m_noteEdit->clear();
+            m_ancestralLineLabel->clear();
             setEditorsEnabled(false);
             return;
         }
@@ -115,6 +156,7 @@ namespace ui
         m_idLabel->setText(m_person->id());
         m_nameEdit->setText(m_person->name());
         m_jobEdit->setText(m_person->job());
+        m_noteEdit->setText(m_person->note());
 
         m_genderCombo->setCurrentIndex(
             m_person->gender() == Gender::Male ? 0 : 1);
@@ -125,6 +167,8 @@ namespace ui
             m_deathDateEdit->setDate(m_person->deathDate());
         else
             m_deathDateEdit->setDate(QDate());
+
+        m_ancestralLineLabel->setText(buildAncestralLine(m_person));
     }
 
     void PersonInspector::setEditorsEnabled(bool enabled)

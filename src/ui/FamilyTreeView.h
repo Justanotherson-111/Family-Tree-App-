@@ -43,10 +43,10 @@ namespace ui
         static constexpr int NODE_W = 120;
         static constexpr int NODE_H = 50;
 
-        static constexpr int GAP_HUSBAND_WIFE = 30;
-        static constexpr int GAP_BETWEEN_WIVES = 40;
-        static constexpr int GAP_SIBLING = 40;
-        static constexpr int GAP_GENERATION = 100;
+        static constexpr int GAP_HUSBAND_WIFE = 120;
+        static constexpr int GAP_BETWEEN_WIVES = 120;
+        static constexpr int GAP_SIBLING = 120;
+        static constexpr int GAP_GENERATION = 160;
         static constexpr int CHILD_BAR_OFFSET = 20;
         static constexpr int MARRIAGE_MARGIN = 0.8;
 

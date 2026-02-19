@@ -25,7 +25,8 @@ namespace core
 
         bool addDaughter(entities::PersonNode *father,
                          entities::PersonNode *mother,
-                         entities::PersonNode *daughter);
+                         entities::PersonNode *daughter,
+                         int birthOrder);
 
         bool canRemove(const entities::PersonNode *person) const;
         bool removePerson(const entities::PersonNode *person);

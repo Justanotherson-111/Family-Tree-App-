@@ -30,19 +30,16 @@ namespace core::entities
 
         PersonNode *wife() const;
 
-        const QList<PersonNode *> &sons() const;
-        const QList<PersonNode *> &daughters() const;
+        const QList<PersonNode *> &children() const;
 
     private:
         PersonNode *m_wife = nullptr;
 
-        QList<PersonNode *> m_sons;
-        QList<PersonNode *> m_daughters;
+        QList<PersonNode *> m_children;
 
         friend class core::FamilyTree;
 
-        void addSon(PersonNode *child, int index);
-        void addDaughter(PersonNode *child);
+        void addChild(PersonNode *child, int birthOrder);
     };
 
     ////////////////////////////////////////////////////////////
@@ -57,7 +54,8 @@ namespace core::entities
                    Gender gender,
                    const QString &job = QString(),
                    const QDate &birthDate = QDate(),
-                   const QDate &deathDate = QDate());
+                   const QDate &deathDate = QDate(),
+                   const QString &note = QString());
 
         // getters
         const QString &id() const;
@@ -65,6 +63,7 @@ namespace core::entities
         Gender gender() const;
         PersonNode *father() const;
         PersonNode *mother() const;
+        const QString &note() const;
 
         const QList<Marriage> &marriages() const;
 
@@ -80,7 +79,7 @@ namespace core::entities
         // mutations
         void rename(const QString &newName);
         void setGender(Gender g);
-
+        void setNote(const QString &note);
         void setJob(const QString &job);
         void setBirthDate(const QDate &date);
         void setDeathDate(const QDate &date);
@@ -98,6 +97,7 @@ namespace core::entities
         QString m_job;
         QDate m_birthDate;
         QDate m_deathDate; // invalid = alive
+        QString m_note;
 
         PersonNode *m_father = nullptr;
         PersonNode *m_mother = nullptr;

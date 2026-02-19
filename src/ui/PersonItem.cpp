@@ -20,8 +20,7 @@ namespace ui
         setAcceptedMouseButtons(Qt::AllButtons);
     }
 
-    const PersonNode *
-    PersonItem::person() const
+    const PersonNode *PersonItem::person() const
     {
         return m_person;
     }
@@ -123,34 +122,38 @@ namespace ui
     // Mouse
     ////////////////////////////////////////////////////////////
 
-    void PersonItem::mousePressEvent(
-        QGraphicsSceneMouseEvent *e)
+    void PersonItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *e)
     {
         if (e->button() == Qt::LeftButton)
         {
-            emit clicked(m_person);
-            e->accept();
-            return;
-        }
-
-        QGraphicsObject::mousePressEvent(e);
-    }
-
-    void PersonItem::mouseDoubleClickEvent(
-        QGraphicsSceneMouseEvent *e)
-    {
-        if (e->button() == Qt::LeftButton)
-        {
-            // Collapse toggle (UI-driven state)
-            const_cast<PersonNode *>(m_person)
-                ->toggleCollapsed();
-
-            emit requestRelayout();
+            emit infoRequested(m_person);
             e->accept();
             return;
         }
 
         QGraphicsObject::mouseDoubleClickEvent(e);
+    }
+
+    void PersonItem::mousePressEvent(QGraphicsSceneMouseEvent *e)
+    {
+        if (e->button() == Qt::LeftButton)
+        {
+            // SHIFT + Click → collapse / expand
+            if (e->modifiers() & Qt::ShiftModifier)
+            {
+                emit requestToggleCollapse(m_person);
+                e->accept();
+                return;
+            }
+
+            // Normal click → highlight
+            emit clicked(m_person);
+
+            QGraphicsObject::mousePressEvent(e); // allow selection
+            return;
+        }
+
+        QGraphicsObject::mousePressEvent(e);
     }
 
     ////////////////////////////////////////////////////////////
@@ -239,11 +242,21 @@ namespace ui
     {
         for (const auto &m : m_person->marriages())
         {
-            if (!m.sons().isEmpty() ||
-                !m.daughters().isEmpty())
+            if (!m.children().isEmpty())
                 return true;
         }
         return false;
+    }
+    QVariant PersonItem::itemChange(GraphicsItemChange change,
+                                    const QVariant &value)
+    {
+        if (change == ItemSelectedChange)
+        {
+            m_selected = value.toBool();
+            update();
+        }
+
+        return QGraphicsObject::itemChange(change, value);
     }
 
 }

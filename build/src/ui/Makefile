@@ -254,6 +254,30 @@ MenuView.cpp.s:
 	cd /mnt/VolumeD/family-tree-app/build && $(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui.dir/build.make src/ui/CMakeFiles/ui.dir/MenuView.cpp.s
 .PHONY : MenuView.cpp.s
 
+PersonInfoWidget.o: PersonInfoWidget.cpp.o
+.PHONY : PersonInfoWidget.o
+
+# target to build an object file
+PersonInfoWidget.cpp.o:
+	cd /mnt/VolumeD/family-tree-app/build && $(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui.dir/build.make src/ui/CMakeFiles/ui.dir/PersonInfoWidget.cpp.o
+.PHONY : PersonInfoWidget.cpp.o
+
+PersonInfoWidget.i: PersonInfoWidget.cpp.i
+.PHONY : PersonInfoWidget.i
+
+# target to preprocess a source file
+PersonInfoWidget.cpp.i:
+	cd /mnt/VolumeD/family-tree-app/build && $(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui.dir/build.make src/ui/CMakeFiles/ui.dir/PersonInfoWidget.cpp.i
+.PHONY : PersonInfoWidget.cpp.i
+
+PersonInfoWidget.s: PersonInfoWidget.cpp.s
+.PHONY : PersonInfoWidget.s
+
+# target to generate assembly for a file
+PersonInfoWidget.cpp.s:
+	cd /mnt/VolumeD/family-tree-app/build && $(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui.dir/build.make src/ui/CMakeFiles/ui.dir/PersonInfoWidget.cpp.s
+.PHONY : PersonInfoWidget.cpp.s
+
 PersonInspector.o: PersonInspector.cpp.o
 .PHONY : PersonInspector.o
 
@@ -349,6 +373,9 @@ help:
 	@echo "... MenuView.o"
 	@echo "... MenuView.i"
 	@echo "... MenuView.s"
+	@echo "... PersonInfoWidget.o"
+	@echo "... PersonInfoWidget.i"
+	@echo "... PersonInfoWidget.s"
 	@echo "... PersonInspector.o"
 	@echo "... PersonInspector.i"
 	@echo "... PersonInspector.s"

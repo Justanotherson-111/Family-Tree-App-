@@ -21,15 +21,13 @@ namespace data
 
         for (const auto &m : p->marriages())
         {
-            auto *wife = m.wife();
-            if (wife)
-                map[wife->id()] = wife;
+            // collect wife
+            if (auto *wife = m.wife())
+                collect(wife, map);
 
-            for (auto *s : m.sons())
-                collect(s, map);
-
-            for (auto *d : m.daughters())
-                collect(d, map);
+            // collect all children (sons + daughters together now)
+            for (auto *child : m.children())
+                collect(child, map);
         }
     }
 
@@ -41,6 +39,7 @@ namespace data
 
         QMap<QString, const PersonNode *> map;
 
+        // DFS collect
         std::function<void(const PersonNode *)> dfs =
             [&](const PersonNode *p)
         {
@@ -54,14 +53,15 @@ namespace data
                 if (m.wife())
                     map[m.wife()->id()] = m.wife();
 
-                for (auto *s : m.sons())
-                    dfs(s);
-                for (auto *d : m.daughters())
-                    dfs(d);
+                for (auto *child : m.children())
+                    dfs(child);
             }
         };
 
         dfs(root);
+
+        // Optional: write header
+        ts << "ID,Name,Gender,Birth,Death,Job,Father,Mother,Spouses\n";
 
         for (const PersonNode *p : map)
         {
@@ -72,6 +72,7 @@ namespace data
 
             QStringList spouses;
 
+            // Only male stores wives (same logic as before)
             if (p->gender() == Gender::Male)
                 for (const auto &m : p->marriages())
                     if (m.wife())
@@ -99,7 +100,9 @@ namespace data
     {
         struct Row
         {
-            QString id, name, gender, birth, death, job, father, mother, spouses;
+            QString id, name, gender,
+                birth, death, job,
+                father, mother, spouses;
         };
 
         QList<Row> rows;
@@ -124,7 +127,9 @@ namespace data
             rows.append(r);
 
             Gender g =
-                (r.gender == "Male") ? Gender::Male : Gender::Female;
+                (r.gender == "Male")
+                    ? Gender::Male
+                    : Gender::Female;
 
             auto *p = new PersonNode(
                 r.id,
@@ -158,8 +163,9 @@ namespace data
             }
         }
 
-        // PASS 3 — children
+        // PASS 3 — children (ordered)
         QMap<QString, int> birthOrderMap;
+
         for (const Row &r : rows)
         {
             if (r.father.isEmpty() || r.mother.isEmpty())
@@ -172,23 +178,24 @@ namespace data
             if (!father || !mother || !child)
                 continue;
 
-            QString key = father->id() + "_" + mother->id();
+            QString key =
+                father->id() + "_" + mother->id();
 
-            int order = birthOrderMap.value(key, 0);
+            int order =
+                birthOrderMap.value(key, 0);
 
             if (child->gender() == Gender::Male)
-            {
                 tree->addSon(father, mother, child, order);
-
-                birthOrderMap[key] = order + 1;
-            }
             else
-                tree->addDaughter(father, mother, child);
+                tree->addDaughter(father, mother, child, order);
+
+            birthOrderMap[key] = order + 1;
         }
 
         // PASS 4 — ancestor
         for (const Row &r : rows)
-            if (r.father.isEmpty() && r.gender == "Male")
+            if (r.father.isEmpty() &&
+                r.gender == "Male")
             {
                 tree->setAncestor(
                     people.value(r.id));
@@ -197,5 +204,4 @@ namespace data
 
         return tree;
     }
-
 }

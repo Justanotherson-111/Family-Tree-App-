@@ -41,7 +41,7 @@ namespace core::services
 
         for (const auto &marriage : person->marriages())
         {
-            for (auto *son : marriage.sons())
+            for (auto *son : marriage.children())
             {
                 if (FamilyRules::canContinueLineage(son))
                     return son;

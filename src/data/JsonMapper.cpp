@@ -15,8 +15,7 @@ namespace data
     static const char *KEY_GENDER = "gender";
     static const char *KEY_MARRIAGES = "marriages";
     static const char *KEY_WIFE = "wife";
-    static const char *KEY_SONS = "sons";
-    static const char *KEY_DAUGHTERS = "daughters";
+    static const char *KEY_CHILDREN = "children";
     static const char *KEY_ANCESTOR = "ancestor";
     static const char *KEY_BIRTH = "birth";
     static const char *KEY_DEATH = "death";
@@ -45,7 +44,9 @@ namespace data
             id, name, gender, job, birth, death);
     }
 
-    PersonNode *JsonMapper::parseMaleNode(const QJsonObject &obj, FamilyTree *tree)
+    PersonNode *JsonMapper::parseMaleNode(
+        const QJsonObject &obj,
+        FamilyTree *tree)
     {
         PersonNode *father =
             parsePerson(obj);
@@ -63,38 +64,35 @@ namespace data
                 parsePerson(
                     mObj[KEY_WIFE].toObject());
 
-            tree->addMarriage(
-                father, wife);
+            tree->addMarriage(father, wife);
 
-            // Sons
+            // Children (ordered)
             int order = 0;
 
-            for (const auto &sVal :
-                 mObj[KEY_SONS].toArray())
+            for (const auto &cVal :
+                 mObj[KEY_CHILDREN].toArray())
             {
-                PersonNode *son =
-                    parseMaleNode(
-                        sVal.toObject(),
-                        tree);
+                QJsonObject childObj =
+                    cVal.toObject();
 
-                tree->addSon(
-                    father,
-                    wife,
-                    son,
-                    order++);
-            }
+                Gender g =
+                    (childObj[KEY_GENDER].toString() == "Male")
+                        ? Gender::Male
+                        : Gender::Female;
 
-            // Daughters
-            for (const auto &dVal : mObj[KEY_DAUGHTERS].toArray())
-            {
-                PersonNode *daughter =
-                    parsePerson(
-                        dVal.toObject());
+                PersonNode *child = nullptr;
 
-                tree->addDaughter(
-                    father,
-                    wife,
-                    daughter);
+                if (g == Gender::Male)
+                    child = parseMaleNode(childObj, tree);
+                else
+                    child = parsePerson(childObj);
+
+                if (g == Gender::Male)
+                    tree->addSon(father, wife, child, order);
+                else
+                    tree->addDaughter(father, wife, child, order);
+
+                ++order;
             }
         }
 
@@ -153,7 +151,8 @@ namespace data
         return obj;
     }
 
-    QJsonObject JsonMapper::toJson(const FamilyTree *tree)
+    QJsonObject JsonMapper::toJson(
+        const FamilyTree *tree)
     {
         const PersonNode *root =
             tree->ancestor();
@@ -174,29 +173,24 @@ namespace data
                 QJsonObject mObj;
 
                 mObj[KEY_WIFE] =
-                    personToJson(
-                        m.wife());
+                    personToJson(m.wife());
 
-                QJsonArray sons;
-                for (auto *s :
-                     m.sons())
-                    sons.append(
-                        serializeMale(s));
+                QJsonArray children;
 
-                QJsonArray daughters;
-                for (auto *d :
-                     m.daughters())
-                    daughters.append(
-                        personToJson(d));
+                for (auto *c : m.children())
+                {
+                    if (c->gender() == Gender::Male)
+                        children.append(
+                            serializeMale(c));
+                    else
+                        children.append(
+                            personToJson(c));
+                }
 
-                mObj[KEY_SONS] =
-                    sons;
+                mObj[KEY_CHILDREN] =
+                    children;
 
-                mObj[KEY_DAUGHTERS] =
-                    daughters;
-
-                marriages.append(
-                    mObj);
+                marriages.append(mObj);
             }
 
             obj[KEY_MARRIAGES] =

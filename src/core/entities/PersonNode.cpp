@@ -12,13 +12,15 @@ namespace core::entities
                            Gender gender,
                            const QString &job,
                            const QDate &birthDate,
-                           const QDate &deathDate)
+                           const QDate &deathDate,
+                           const QString &note)
         : m_id(id),
           m_name(name),
           m_gender(gender),
           m_job(job),
           m_birthDate(birthDate),
-          m_deathDate(deathDate)
+          m_deathDate(deathDate),
+          m_note(note)
     {
     }
 
@@ -70,7 +72,7 @@ namespace core::entities
     {
         for (const auto &m : m_marriages)
         {
-            if (!m.sons().isEmpty() || !m.daughters().isEmpty())
+            if (!m.children().isEmpty())
                 return true;
         }
         return false;
@@ -111,6 +113,15 @@ namespace core::entities
     {
         m_deathDate = QDate();
     }
+    const QString &PersonNode::note() const
+    {
+        return m_note;
+    }
+
+    void PersonNode::setNote(const QString &note)
+    {
+        m_note = note;
+    }
 
     ////////////////////////////////////////////////////////////
     // UI State
@@ -143,33 +154,20 @@ namespace core::entities
 
     PersonNode *Marriage::wife() const { return m_wife; }
 
-    const QList<PersonNode *> &Marriage::sons() const
+    void Marriage::addChild(PersonNode *child, int birthOrder)
     {
-        return m_sons;
-    }
-
-    const QList<PersonNode *> &Marriage::daughters() const
-    {
-        return m_daughters;
-    }
-
-    void Marriage::addSon(PersonNode *child, int index)
-    {
-        if (!child || child->gender() != Gender::Male)
+        if (!child)
             return;
 
-        if (index < 0 || index > m_sons.size())
-            index = m_sons.size();
+        if (birthOrder < 0 || birthOrder > m_children.size())
+            birthOrder = m_children.size();
 
-        m_sons.insert(index, child);
+        m_children.insert(birthOrder, child);
     }
 
-    void Marriage::addDaughter(PersonNode *child)
+    const QList<PersonNode *> &Marriage::children() const
     {
-        if (!child || child->gender() != Gender::Female)
-            return;
-
-        m_daughters.append(child);
+        return m_children;
     }
 
 } // namespace core::entities

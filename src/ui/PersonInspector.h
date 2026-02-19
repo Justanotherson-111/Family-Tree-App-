@@ -50,6 +50,9 @@ namespace ui
         QLineEdit *m_jobEdit = nullptr;
         QDateEdit *m_birthDateEdit = nullptr;
         QDateEdit *m_deathDateEdit = nullptr;
+        QLineEdit *m_noteEdit = nullptr;
+        QLabel *m_ancestralLineLabel = nullptr;
+
     };
 
 }

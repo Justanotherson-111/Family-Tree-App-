@@ -3,5 +3,6 @@
 #include "EWIEGA46WW/moc_FamilyTreeView.cpp"
 #include "EWIEGA46WW/moc_MenuController.cpp"
 #include "EWIEGA46WW/moc_MenuView.cpp"
+#include "EWIEGA46WW/moc_PersonInfoWidget.cpp"
 #include "EWIEGA46WW/moc_PersonInspector.cpp"
 #include "EWIEGA46WW/moc_PersonItem.cpp"

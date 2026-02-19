@@ -10,6 +10,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ui.dir/MenuController.cpp.o.d"
   "CMakeFiles/ui.dir/MenuView.cpp.o"
   "CMakeFiles/ui.dir/MenuView.cpp.o.d"
+  "CMakeFiles/ui.dir/PersonInfoWidget.cpp.o"
+  "CMakeFiles/ui.dir/PersonInfoWidget.cpp.o.d"
   "CMakeFiles/ui.dir/PersonInspector.cpp.o"
   "CMakeFiles/ui.dir/PersonInspector.cpp.o.d"
   "CMakeFiles/ui.dir/PersonItem.cpp.o"

@@ -58,12 +58,13 @@ namespace core
             if (marriage.wife() == mother)
             {
                 if (birthOrder < 0 ||
-                    birthOrder > marriage.sons().size())
+                    birthOrder > marriage.children().size())
                     return false;
 
                 son->m_father = father;
                 son->m_mother = mother;
-                marriage.addSon(son, birthOrder);
+
+                marriage.addChild(son, birthOrder);
                 return true;
             }
         }
@@ -73,7 +74,8 @@ namespace core
 
     bool FamilyTree::addDaughter(PersonNode *father,
                                  PersonNode *mother,
-                                 PersonNode *daughter)
+                                 PersonNode *daughter,
+                                 int birthOrder)
     {
         if (!father || !mother || !daughter)
             return false;
@@ -85,9 +87,14 @@ namespace core
         {
             if (marriage.wife() == mother)
             {
+                if (birthOrder < 0 ||
+                    birthOrder > marriage.children().size())
+                    return false;
+
                 daughter->m_father = father;
                 daughter->m_mother = mother;
-                marriage.addDaughter(daughter);
+
+                marriage.addChild(daughter, birthOrder);
                 return true;
             }
         }
@@ -103,10 +110,10 @@ namespace core
         if (person == m_ancestor)
             return false;
 
+        // cannot remove if has children
         for (const auto &m : person->marriages())
         {
-            if (!m.sons().isEmpty() ||
-                !m.daughters().isEmpty())
+            if (!m.children().isEmpty())
                 return false;
         }
 
@@ -129,13 +136,8 @@ namespace core
                 const_cast<PersonNode *>(person->father());
 
             for (auto &m : parent->m_marriages)
-            {
-                m.m_sons.removeAll(
+                m.m_children.removeAll(
                     const_cast<PersonNode *>(person));
-
-                m.m_daughters.removeAll(
-                    const_cast<PersonNode *>(person));
-            }
 
             delete person;
             return true;
@@ -155,22 +157,20 @@ namespace core
 
                     if (m.wife() == person)
                     {
-                        for (auto *s : m.m_sons)
-                            cleanup(s);
+                        for (auto *child : m.children())
+                            cleanup(child);
 
-                        for (auto *d : m.m_daughters)
-                            delete d;
-
-                        delete m.m_wife;
+                        delete m.wife();
                         male->m_marriages.removeAt(i);
                         return true;
                     }
                 }
 
                 for (auto &m : male->m_marriages)
-                    for (auto *s : m.m_sons)
-                        if (removeFrom(s))
-                            return true;
+                    for (auto *child : m.children())
+                        if (child->gender() == Gender::Male)
+                            if (removeFrom(child))
+                                return true;
 
                 return false;
             };
@@ -195,13 +195,10 @@ namespace core
 
             if (m.wife() == wife)
             {
-                for (auto *s : m.m_sons)
-                    cleanup(s);
+                for (auto *child : m.m_children)
+                    cleanup(child);
 
-                for (auto *d : m.m_daughters)
-                    delete d;
-
-                delete m.m_wife;
+                delete m.wife();
                 husband->m_marriages.removeAt(i);
                 return true;
             }
@@ -217,17 +214,15 @@ namespace core
 
         for (auto &m : p->m_marriages)
         {
-            for (auto *s : m.m_sons)
-                cleanup(s);
+            for (auto *child : m.m_children)
+                cleanup(child);
 
-            for (auto *d : m.m_daughters)
-                delete d;
-
-            delete m.m_wife;
+            delete m.wife();
         }
 
         delete p;
     }
+
     QString FamilyTree::generateId()
     {
         while (m_usedIds.contains(m_nextId))
@@ -253,6 +248,7 @@ namespace core
         if (val >= m_nextId)
             m_nextId = val + 1;
     }
+
     void FamilyTree::rebuildIdRegistry()
     {
         m_usedIds.clear();
@@ -270,11 +266,8 @@ namespace core
             {
                 registerId(m.wife()->id());
 
-                for (auto *s : m.m_sons)
-                    scan(s);
-
-                for (auto *d : m.m_daughters)
-                    registerId(d->id());
+                for (auto *child : m.m_children)
+                    scan(child);
             }
         };
 

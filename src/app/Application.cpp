@@ -42,7 +42,7 @@ FamilyTree *Application::createDemoTree()
 
     tree->addSon(toTien, vo, con1, 0);
     tree->addSon(toTien, vo, con2, 1);
-    tree->addDaughter(toTien, vo, con3);
+    tree->addDaughter(toTien, vo, con3,2);
 
     auto *vo2 =
         new PersonNode(tree->generateId(), "C", Gender::Female);

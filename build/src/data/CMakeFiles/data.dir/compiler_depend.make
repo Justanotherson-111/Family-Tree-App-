@@ -8,30 +8,6 @@ src/data/data_autogen/timestamp: /mnt/VolumeD/family-tree-app/src/data/CMakeList
   /mnt/VolumeD/family-tree-app/src/data/JsonMapper.h \
   /mnt/VolumeD/family-tree-app/src/data/Repository.cpp \
   /mnt/VolumeD/family-tree-app/src/data/Repository.h \
-  /usr/bin/cmake \
-  /mnt/VolumeD/family-tree-app/src/data/CMakeLists.txt \
-  /mnt/VolumeD/family-tree-app/src/data/CSVMapper.cpp \
-  /mnt/VolumeD/family-tree-app/src/data/CSVMapper.h \
-  /mnt/VolumeD/family-tree-app/src/data/JsonMapper.cpp \
-  /mnt/VolumeD/family-tree-app/src/data/JsonMapper.h \
-  /mnt/VolumeD/family-tree-app/src/data/Repository.cpp \
-  /mnt/VolumeD/family-tree-app/src/data/Repository.h \
-  /usr/bin/cmake \
-  /mnt/VolumeD/family-tree-app/src/data/CMakeLists.txt \
-  /mnt/VolumeD/family-tree-app/src/data/CSVMapper.cpp \
-  /mnt/VolumeD/family-tree-app/src/data/CSVMapper.h \
-  /mnt/VolumeD/family-tree-app/src/data/JsonMapper.cpp \
-  /mnt/VolumeD/family-tree-app/src/data/JsonMapper.h \
-  /mnt/VolumeD/family-tree-app/src/data/Repository.cpp \
-  /mnt/VolumeD/family-tree-app/src/data/Repository.h \
-  /usr/bin/cmake \
-  /mnt/VolumeD/family-tree-app/src/data/CMakeLists.txt \
-  /mnt/VolumeD/family-tree-app/src/data/CSVMapper.cpp \
-  /mnt/VolumeD/family-tree-app/src/data/CSVMapper.h \
-  /mnt/VolumeD/family-tree-app/src/data/JsonMapper.cpp \
-  /mnt/VolumeD/family-tree-app/src/data/JsonMapper.h \
-  /mnt/VolumeD/family-tree-app/src/data/Repository.cpp \
-  /mnt/VolumeD/family-tree-app/src/data/Repository.h \
   /usr/bin/cmake
 
 src/data/CMakeFiles/data.dir/CSVMapper.cpp.o: /mnt/VolumeD/family-tree-app/src/data/CSVMapper.cpp \

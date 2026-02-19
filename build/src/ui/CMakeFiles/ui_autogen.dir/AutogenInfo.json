@@ -35,6 +35,12 @@
 			null
 		],
 		[
+			"/mnt/VolumeD/family-tree-app/src/ui/PersonInfoWidget.h",
+			"MU",
+			"EWIEGA46WW/moc_PersonInfoWidget.cpp",
+			null
+		],
+		[
 			"/mnt/VolumeD/family-tree-app/src/ui/PersonInspector.h",
 			"MU",
 			"EWIEGA46WW/moc_PersonInspector.cpp",
@@ -124,6 +130,11 @@
 		[ "/mnt/VolumeD/family-tree-app/src/ui/FamilyTreeView.cpp", "MU", null ],
 		[ "/mnt/VolumeD/family-tree-app/src/ui/MenuController.cpp", "MU", null ],
 		[ "/mnt/VolumeD/family-tree-app/src/ui/MenuView.cpp", "MU", null ],
+		[
+			"/mnt/VolumeD/family-tree-app/src/ui/PersonInfoWidget.cpp",
+			"MU",
+			null
+		],
 		[ "/mnt/VolumeD/family-tree-app/src/ui/PersonInspector.cpp", "MU", null ],
 		[ "/mnt/VolumeD/family-tree-app/src/ui/PersonItem.cpp", "MU", null ]
 	],

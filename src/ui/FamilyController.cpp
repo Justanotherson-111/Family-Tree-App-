@@ -148,7 +148,7 @@ namespace ui
     {
         if (!m_tree)
             return nullptr;
-            
+
         return new PersonNode(
             m_tree->generateId(),
             name,
@@ -186,14 +186,18 @@ namespace ui
         if (name.isEmpty())
             return;
 
-        auto *son =
-            createPerson(name, Gender::Male);
+        auto *son = createPerson(name, Gender::Male);
 
         int order = 0;
 
         for (const Marriage &m : father->marriages())
+        {
             if (m.wife() == wife)
-                order = m.sons().size();
+            {
+                order = m.children().size();
+                break;
+            }
+        }
 
         m_tree->addSon(
             const_cast<PersonNode *>(father),
@@ -222,10 +226,22 @@ namespace ui
         auto *daughter =
             createPerson(name, Gender::Female);
 
+        int order = 0;
+
+        for (const Marriage &m : father->marriages())
+        {
+            if (m.wife() == wife)
+            {
+                order = m.children().size();
+                break;
+            }
+        }
+
         m_tree->addDaughter(
             const_cast<PersonNode *>(father),
             const_cast<PersonNode *>(wife),
-            daughter);
+            daughter,
+            order);
 
         rebuildAll();
     }

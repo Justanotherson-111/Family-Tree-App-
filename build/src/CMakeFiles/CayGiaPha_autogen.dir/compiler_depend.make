@@ -3,6 +3,12 @@
 
 src/CayGiaPha_autogen/timestamp: /mnt/VolumeD/family-tree-app/src/CMakeLists.txt \
   /mnt/VolumeD/family-tree-app/src/main.cpp \
+  /usr/bin/cmake \
+  /mnt/VolumeD/family-tree-app/src/CMakeLists.txt \
+  /mnt/VolumeD/family-tree-app/src/main.cpp \
+  /usr/bin/cmake \
+  /mnt/VolumeD/family-tree-app/src/CMakeLists.txt \
+  /mnt/VolumeD/family-tree-app/src/main.cpp \
   /usr/bin/cmake
 
 

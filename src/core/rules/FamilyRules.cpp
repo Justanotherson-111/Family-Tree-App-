@@ -3,6 +3,7 @@
 namespace core::rules
 {
 
+    using core::entities::Gender;
     using core::entities::PersonNode;
 
     bool FamilyRules::canContinueLineage(
@@ -21,23 +22,29 @@ namespace core::rules
         if (!deceased)
             return nullptr;
 
-        // First pass:
+        // FIRST PASS:
         // eldest son who can continue lineage
         for (const auto &marriage : deceased->marriages())
         {
-            for (auto *son : marriage.sons())
+            for (auto *child : marriage.children())
             {
-                if (canContinueLineage(son))
-                    return son;
+                if (child->gender() == Gender::Male &&
+                    canContinueLineage(child))
+                {
+                    return child;
+                }
             }
         }
 
-        // Fallback:
+        // FALLBACK:
         // just eldest son
         for (const auto &marriage : deceased->marriages())
         {
-            if (!marriage.sons().isEmpty())
-                return marriage.sons().first();
+            for (auto *child : marriage.children())
+            {
+                if (child->gender() == Gender::Male)
+                    return child;
+            }
         }
 
         return nullptr;

@@ -1,13 +1,14 @@
 #include "FamilyTreeView.h"
 #include <QWheelEvent>
 #include <QPainter>
+#include "PersonInfoWidget.h"
 
 namespace ui
 {
 
+    using core::entities::Gender;
     using core::entities::Marriage;
     using core::entities::PersonNode;
-
     ////////////////////////////////////////////////////////
 
     FamilyTreeView::FamilyTreeView(QWidget *parent)
@@ -100,6 +101,24 @@ namespace ui
         connect(item, &PersonItem::requestRemove,
                 this, [=]
                 { emit personRemoveRequested(p); });
+
+        connect(item, &PersonItem::requestToggleCollapse,
+                this, [=](const PersonNode *node)
+                {
+                    // Toggle collapse in model
+                    const_cast<PersonNode *>(node)->toggleCollapsed();
+
+                    // Rebuild layout
+                    rebuild(); });
+
+        connect(item, &PersonItem::infoRequested,
+                this, [=](const PersonNode *p)
+                {
+            auto *dialog = new PersonInfoWidget(this);
+
+            dialog->setPerson(p);
+
+            dialog->exec(); });
     }
 
     ////////////////////////////////////////////////////////
@@ -117,20 +136,20 @@ namespace ui
         {
             int w = 0;
 
-            for (auto *s : m.sons())
-                w += subtreeWidth(s) + GAP_SIBLING;
+            const auto &children = m.children();
 
-            w += m.daughters().size() * (NODE_W + GAP_SIBLING);
+            for (auto *child : children)
+                w += subtreeWidth(child) + GAP_SIBLING;
 
-            if (w > 0)
-                w -= GAP_SIBLING;
-            if (w == 0)
+            if (!children.isEmpty())
+                w -= GAP_SIBLING; // remove last extra gap
+            else
                 w = NODE_W;
 
             total += w + GAP_BETWEEN_WIVES;
         }
 
-        if (total > 0)
+        if (!node->marriages().isEmpty())
             total -= GAP_BETWEEN_WIVES;
 
         return std::max(total, NODE_W);
@@ -191,18 +210,20 @@ namespace ui
             QVector<PersonItem *> children;
             int cx = wx;
 
-            for (auto *s : m.sons())
+            for (auto *child : m.children())
             {
-                int used = layoutMale(s, cx, childY);
-                children.push_back(m_items[s]);
-                cx += used + GAP_SIBLING;
-            }
-
-            for (auto *d : m.daughters())
-            {
-                auto *di = createItem(d, cx, childY);
-                children.push_back(di);
-                cx += NODE_W + GAP_SIBLING;
+                if (child->gender() == Gender::Male)
+                {
+                    int used = layoutMale(child, cx, childY);
+                    children.push_back(m_items[child]);
+                    cx += used + GAP_SIBLING;
+                }
+                else
+                {
+                    auto *di = createItem(child, cx, childY);
+                    children.push_back(di);
+                    cx += NODE_W + GAP_SIBLING;
+                }
             }
 
             // ===== Connectors =====
