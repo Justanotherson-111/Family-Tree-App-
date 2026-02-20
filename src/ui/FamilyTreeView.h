@@ -26,6 +26,7 @@ namespace ui
         items() const { return m_items; }
 
         QGraphicsScene *scenePtr() const { return m_scene; }
+        void zoomToFit();
 
     signals:
         void personClicked(const core::entities::PersonNode *);
@@ -40,16 +41,16 @@ namespace ui
 
     private:
         // ===== Layout constants =====
-        static constexpr int NODE_W = 120;
-        static constexpr int NODE_H = 50;
+        static constexpr int NODE_W = 220;
+        static constexpr int NODE_H = 110;
 
         static constexpr int GAP_HUSBAND_WIFE = 120;
         static constexpr int GAP_BETWEEN_WIVES = 120;
         static constexpr int GAP_SIBLING = 120;
         static constexpr int GAP_GENERATION = 160;
         static constexpr int CHILD_BAR_OFFSET = 20;
-        static constexpr int MARRIAGE_MARGIN = 0.8;
-
+        static constexpr int MARRIAGE_MARGIN = 12;
+        static constexpr int VERTICAL_MARGIN = 8;
         QGraphicsScene *m_scene = nullptr;
         const core::FamilyTree *m_tree = nullptr;
 
@@ -65,7 +66,6 @@ namespace ui
         void connectCommonSignals(PersonItem *item, const core::entities::PersonNode *p);
 
         void rebuild();
-        void zoomToFit();
-    };
+        };
 
 }

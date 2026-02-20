@@ -53,6 +53,10 @@ namespace ui
 
     void FamilyTreeView::rebuild()
     {
+        // Save current view state
+        QTransform oldTransform = transform();
+        QPointF oldCenter = mapToScene(viewport()->rect().center());
+
         m_scene->clear();
         m_items.clear();
 
@@ -62,7 +66,12 @@ namespace ui
         layoutMale(m_tree->ancestor(), 0, 0);
 
         m_scene->setSceneRect(m_scene->itemsBoundingRect());
-        zoomToFit();
+
+        // Restore zoom
+        setTransform(oldTransform);
+
+        // Restore center
+        centerOn(oldCenter);
     }
 
     ////////////////////////////////////////////////////////
@@ -199,12 +208,18 @@ namespace ui
                     { emit personAddDaughterRequested(node, wifeNode); });
 
             // ===== Marriage line =====
-            m_scene->addLine(prevRightX + MARRIAGE_MARGIN,
-                             y + NODE_H / 2,
-                             wx - MARRIAGE_MARGIN,
-                             y + NODE_H / 2);
+            qreal husbandRightX = maleItem->pos().x() + NODE_W;
+            qreal centerY = maleItem->pos().y() + NODE_H / 2;
 
-            prevRightX = wx + NODE_W;
+            qreal wifeLeftX = wife->pos().x();
+
+            auto *marriageLine = m_scene->addLine(
+                husbandRightX,
+                centerY,
+                wifeLeftX,
+                centerY);
+
+            marriageLine->setZValue(0);
 
             // ===== Children =====
             QVector<PersonItem *> children;
@@ -229,20 +244,41 @@ namespace ui
             // ===== Connectors =====
             if (!children.isEmpty())
             {
-                qreal mid = wife->pos().x() + NODE_W / 2;
+                // Mother bottom center
+                qreal motherCenterX = wife->pos().x() + NODE_W / 2;
+                qreal motherBottomY = wife->pos().y() + NODE_H;
+
                 qreal barY = childY - CHILD_BAR_OFFSET;
 
-                m_scene->addLine(mid, y + NODE_H, mid, barY);
+                // Vertical line: mother bottom → horizontal bar
+                m_scene->addLine(motherCenterX,
+                                 motherBottomY,
+                                 motherCenterX,
+                                 barY);
 
-                qreal L = children.first()->pos().x() + NODE_W / 2;
-                qreal R = children.last()->pos().x() + NODE_W / 2;
+                qreal firstChildCenter =
+                    children.first()->pos().x() + NODE_W / 2;
 
-                m_scene->addLine(L, barY, R, barY);
+                qreal lastChildCenter =
+                    children.last()->pos().x() + NODE_W / 2;
+
+                m_scene->addLine(firstChildCenter,
+                                 barY,
+                                 lastChildCenter,
+                                 barY);
 
                 for (auto *c : children)
                 {
-                    qreal cc = c->pos().x() + NODE_W / 2;
-                    m_scene->addLine(cc, barY, cc, c->pos().y());
+                    qreal childCenterX =
+                        c->pos().x() + NODE_W / 2;
+
+                    qreal childTopY =
+                        c->pos().y();
+
+                    m_scene->addLine(childCenterX,
+                                     barY,
+                                     childCenterX,
+                                     childTopY);
                 }
             }
 

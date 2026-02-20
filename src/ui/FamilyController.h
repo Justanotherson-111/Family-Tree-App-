@@ -49,6 +49,8 @@ namespace ui
         core::entities::PersonNode *createPerson(
             const QString &name,
             core::entities::Gender g);
+
+        bool m_firstLoad = true;
     signals:
         void inspectorRequested();
     };

@@ -63,6 +63,7 @@ namespace ui
     void FamilyController::setFamilyTree(core::FamilyTree *tree)
     {
         m_tree = tree;
+        m_firstLoad = true;
         rebuildAll();
     }
 
@@ -74,6 +75,13 @@ namespace ui
             return;
 
         m_view->setFamilyTree(m_tree);
+
+        if (m_firstLoad)
+        {
+            m_view->zoomToFit();
+            m_firstLoad = false;
+        }
+
         rebuildMainLine();
         updateVisualState();
     }
