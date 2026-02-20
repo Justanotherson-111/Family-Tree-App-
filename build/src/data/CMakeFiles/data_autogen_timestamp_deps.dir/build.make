@@ -66,8 +66,8 @@ include src/data/CMakeFiles/data_autogen_timestamp_deps.dir/compiler_depend.make
 # Include the progress variables for this target.
 include src/data/CMakeFiles/data_autogen_timestamp_deps.dir/progress.make
 
-src/data/CMakeFiles/data_autogen_timestamp_deps: /usr/lib/qt6/libexec/uic
 src/data/CMakeFiles/data_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
+src/data/CMakeFiles/data_autogen_timestamp_deps: /usr/lib/qt6/libexec/uic
 src/data/CMakeFiles/data_autogen_timestamp_deps: src/core/libcore.a
 
 data_autogen_timestamp_deps: src/data/CMakeFiles/data_autogen_timestamp_deps

@@ -11,6 +11,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/mnt/VolumeD/family-tree-app/src/ui/ConnectionItem.h",
+			"MU",
+			"EWIEGA46WW/moc_ConnectionItem.cpp",
+			null
+		],
+		[
 			"/mnt/VolumeD/family-tree-app/src/ui/FamilyController.h",
 			"MU",
 			"EWIEGA46WW/moc_FamilyController.cpp",
@@ -122,6 +128,7 @@
 	"SETTINGS_FILE" : "/mnt/VolumeD/family-tree-app/build/src/ui/CMakeFiles/ui_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/mnt/VolumeD/family-tree-app/src/ui/ConnectionItem.cpp", "MU", null ],
 		[
 			"/mnt/VolumeD/family-tree-app/src/ui/FamilyController.cpp",
 			"MU",

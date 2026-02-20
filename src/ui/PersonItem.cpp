@@ -1,13 +1,17 @@
 #include "PersonItem.h"
+#include "entities/PersonNode.h"
 
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
 #include <QMenu>
+#include <QGraphicsScene>
+#include <QApplication>
 
 namespace ui
 {
 
     using core::entities::Gender;
+    using core::entities::Marriage;
     using core::entities::PersonNode;
 
     PersonItem::PersonItem(
@@ -16,7 +20,10 @@ namespace ui
         : QGraphicsObject(parent),
           m_person(person)
     {
-        setFlags(ItemIsSelectable);
+        setFlags(ItemIsSelectable |
+                 ItemIsMovable |
+                 ItemSendsGeometryChanges);
+
         setAcceptedMouseButtons(Qt::AllButtons);
     }
 
@@ -250,6 +257,22 @@ namespace ui
     QVariant PersonItem::itemChange(GraphicsItemChange change,
                                     const QVariant &value)
     {
+        if (change == ItemPositionChange)
+        {
+            QPointF newPos = value.toPointF();
+
+            // Only restrict during mouse drag
+            if (QApplication::mouseButtons() != Qt::NoButton)
+            {
+                newPos.setY(pos().y());
+            }
+
+            return newPos;
+        }
+
+        if (change == ItemPositionHasChanged)
+            emit positionChanged(m_person, pos());
+
         if (change == ItemSelectedChange)
         {
             m_selected = value.toBool();
@@ -258,5 +281,4 @@ namespace ui
 
         return QGraphicsObject::itemChange(change, value);
     }
-
 }

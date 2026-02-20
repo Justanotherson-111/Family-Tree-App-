@@ -66,11 +66,11 @@ include src/ui/CMakeFiles/ui_autogen_timestamp_deps.dir/compiler_depend.make
 # Include the progress variables for this target.
 include src/ui/CMakeFiles/ui_autogen_timestamp_deps.dir/progress.make
 
+src/ui/CMakeFiles/ui_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
+src/ui/CMakeFiles/ui_autogen_timestamp_deps: /usr/lib/qt6/libexec/uic
 src/ui/CMakeFiles/ui_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
 src/ui/CMakeFiles/ui_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2
 src/ui/CMakeFiles/ui_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6PrintSupport.so.6.4.2
-src/ui/CMakeFiles/ui_autogen_timestamp_deps: /usr/lib/qt6/libexec/uic
-src/ui/CMakeFiles/ui_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
 src/ui/CMakeFiles/ui_autogen_timestamp_deps: src/core/libcore.a
 src/ui/CMakeFiles/ui_autogen_timestamp_deps: src/data/libdata.a
 

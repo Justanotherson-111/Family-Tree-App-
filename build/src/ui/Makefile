@@ -158,6 +158,30 @@ ui_autogen/fast:
 	cd /mnt/VolumeD/family-tree-app/build && $(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui_autogen.dir/build.make src/ui/CMakeFiles/ui_autogen.dir/build
 .PHONY : ui_autogen/fast
 
+ConnectionItem.o: ConnectionItem.cpp.o
+.PHONY : ConnectionItem.o
+
+# target to build an object file
+ConnectionItem.cpp.o:
+	cd /mnt/VolumeD/family-tree-app/build && $(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui.dir/build.make src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.o
+.PHONY : ConnectionItem.cpp.o
+
+ConnectionItem.i: ConnectionItem.cpp.i
+.PHONY : ConnectionItem.i
+
+# target to preprocess a source file
+ConnectionItem.cpp.i:
+	cd /mnt/VolumeD/family-tree-app/build && $(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui.dir/build.make src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.i
+.PHONY : ConnectionItem.cpp.i
+
+ConnectionItem.s: ConnectionItem.cpp.s
+.PHONY : ConnectionItem.s
+
+# target to generate assembly for a file
+ConnectionItem.cpp.s:
+	cd /mnt/VolumeD/family-tree-app/build && $(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/ui.dir/build.make src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.s
+.PHONY : ConnectionItem.cpp.s
+
 FamilyController.o: FamilyController.cpp.o
 .PHONY : FamilyController.o
 
@@ -361,6 +385,9 @@ help:
 	@echo "... ui_autogen"
 	@echo "... ui_autogen_timestamp_deps"
 	@echo "... ui"
+	@echo "... ConnectionItem.o"
+	@echo "... ConnectionItem.i"
+	@echo "... ConnectionItem.s"
 	@echo "... FamilyController.o"
 	@echo "... FamilyController.i"
 	@echo "... FamilyController.s"

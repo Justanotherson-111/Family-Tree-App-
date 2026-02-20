@@ -2,6 +2,7 @@
 
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QTimer>
 
 namespace ui
 {
@@ -78,7 +79,11 @@ namespace ui
 
         if (m_firstLoad)
         {
-            m_view->zoomToFit();
+            QTimer::singleShot(0, m_view, [this]()
+                               {
+        m_view->resetTransform();
+        m_view->zoomToFit(); });
+
             m_firstLoad = false;
         }
 

@@ -188,6 +188,20 @@ src/ui/CMakeFiles/ui.dir/PersonInfoWidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ui.dir/PersonInfoWidget.cpp.s"
 	cd /mnt/VolumeD/family-tree-app/build/src/ui && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/VolumeD/family-tree-app/src/ui/PersonInfoWidget.cpp -o CMakeFiles/ui.dir/PersonInfoWidget.cpp.s
 
+src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.o: src/ui/CMakeFiles/ui.dir/flags.make
+src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.o: /mnt/VolumeD/family-tree-app/src/ui/ConnectionItem.cpp
+src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.o: src/ui/CMakeFiles/ui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/VolumeD/family-tree-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.o"
+	cd /mnt/VolumeD/family-tree-app/build/src/ui && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.o -MF CMakeFiles/ui.dir/ConnectionItem.cpp.o.d -o CMakeFiles/ui.dir/ConnectionItem.cpp.o -c /mnt/VolumeD/family-tree-app/src/ui/ConnectionItem.cpp
+
+src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ui.dir/ConnectionItem.cpp.i"
+	cd /mnt/VolumeD/family-tree-app/build/src/ui && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/VolumeD/family-tree-app/src/ui/ConnectionItem.cpp > CMakeFiles/ui.dir/ConnectionItem.cpp.i
+
+src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ui.dir/ConnectionItem.cpp.s"
+	cd /mnt/VolumeD/family-tree-app/build/src/ui && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/VolumeD/family-tree-app/src/ui/ConnectionItem.cpp -o CMakeFiles/ui.dir/ConnectionItem.cpp.s
+
 # Object files for target ui
 ui_OBJECTS = \
 "CMakeFiles/ui.dir/ui_autogen/mocs_compilation.cpp.o" \
@@ -197,7 +211,8 @@ ui_OBJECTS = \
 "CMakeFiles/ui.dir/MenuView.cpp.o" \
 "CMakeFiles/ui.dir/MenuController.cpp.o" \
 "CMakeFiles/ui.dir/PersonInspector.cpp.o" \
-"CMakeFiles/ui.dir/PersonInfoWidget.cpp.o"
+"CMakeFiles/ui.dir/PersonInfoWidget.cpp.o" \
+"CMakeFiles/ui.dir/ConnectionItem.cpp.o"
 
 # External object files for target ui
 ui_EXTERNAL_OBJECTS =
@@ -210,9 +225,10 @@ src/ui/libui.a: src/ui/CMakeFiles/ui.dir/MenuView.cpp.o
 src/ui/libui.a: src/ui/CMakeFiles/ui.dir/MenuController.cpp.o
 src/ui/libui.a: src/ui/CMakeFiles/ui.dir/PersonInspector.cpp.o
 src/ui/libui.a: src/ui/CMakeFiles/ui.dir/PersonInfoWidget.cpp.o
+src/ui/libui.a: src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.o
 src/ui/libui.a: src/ui/CMakeFiles/ui.dir/build.make
 src/ui/libui.a: src/ui/CMakeFiles/ui.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/VolumeD/family-tree-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libui.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/VolumeD/family-tree-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library libui.a"
 	cd /mnt/VolumeD/family-tree-app/build/src/ui && $(CMAKE_COMMAND) -P CMakeFiles/ui.dir/cmake_clean_target.cmake
 	cd /mnt/VolumeD/family-tree-app/build/src/ui && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ui.dir/link.txt --verbose=$(VERBOSE)
 

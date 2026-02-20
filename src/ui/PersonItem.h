@@ -40,6 +40,8 @@ namespace ui
         void requestToggleCollapse(const core::entities::PersonNode *);
 
         void requestRelayout();
+        void positionChanged(const core::entities::PersonNode *,
+                             const QPointF &newPos);
 
     protected:
         void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override;

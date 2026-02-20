@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "src/ui/ui_autogen/timestamp" "custom" "src/ui/ui_autogen/deps"
+  "/mnt/VolumeD/family-tree-app/src/ui/ConnectionItem.cpp" "src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.o" "gcc" "src/ui/CMakeFiles/ui.dir/ConnectionItem.cpp.o.d"
   "/mnt/VolumeD/family-tree-app/src/ui/FamilyController.cpp" "src/ui/CMakeFiles/ui.dir/FamilyController.cpp.o" "gcc" "src/ui/CMakeFiles/ui.dir/FamilyController.cpp.o.d"
   "/mnt/VolumeD/family-tree-app/src/ui/FamilyTreeView.cpp" "src/ui/CMakeFiles/ui.dir/FamilyTreeView.cpp.o" "gcc" "src/ui/CMakeFiles/ui.dir/FamilyTreeView.cpp.o.d"
   "/mnt/VolumeD/family-tree-app/src/ui/MenuController.cpp" "src/ui/CMakeFiles/ui.dir/MenuController.cpp.o" "gcc" "src/ui/CMakeFiles/ui.dir/MenuController.cpp.o.d"

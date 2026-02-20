@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ui_autogen.dir/AutogenUsed.txt"
   "CMakeFiles/ui_autogen.dir/ParseCache.txt"
   "ui_autogen"
+  "CMakeFiles/ui.dir/ConnectionItem.cpp.o"
+  "CMakeFiles/ui.dir/ConnectionItem.cpp.o.d"
   "CMakeFiles/ui.dir/FamilyController.cpp.o"
   "CMakeFiles/ui.dir/FamilyController.cpp.o.d"
   "CMakeFiles/ui.dir/FamilyTreeView.cpp.o"

@@ -4,6 +4,8 @@ ui_autogen/timestamp: \
 	/mnt/VolumeD/family-tree-app/src/core/entities/PersonNode.h \
 	/mnt/VolumeD/family-tree-app/src/core/services/BranchAnalyzer.h \
 	/mnt/VolumeD/family-tree-app/src/ui/CMakeLists.txt \
+	/mnt/VolumeD/family-tree-app/src/ui/ConnectionItem.cpp \
+	/mnt/VolumeD/family-tree-app/src/ui/ConnectionItem.h \
 	/mnt/VolumeD/family-tree-app/src/ui/FamilyController.cpp \
 	/mnt/VolumeD/family-tree-app/src/ui/FamilyController.h \
 	/mnt/VolumeD/family-tree-app/src/ui/FamilyTreeView.cpp \
@@ -307,6 +309,7 @@ ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QSet \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QVector \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qalgorithms.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qanystringview.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qarraydata.h \
@@ -392,9 +395,11 @@ ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qutf8stringview.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvector.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qversiontagging.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/QAction \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/QBrush \
+	/usr/include/x86_64-linux-gnu/qt6/QtGui/QPainterPath \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/QPen \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/qaction.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/qbitmap.h \

@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_ui__PersonItem_t {
-    uint offsetsAndSizes[24];
+    uint offsetsAndSizes[28];
     char stringdata0[15];
     char stringdata1[14];
     char stringdata2[1];
@@ -39,6 +39,8 @@ struct qt_meta_stringdata_ui__PersonItem_t {
     char stringdata9[14];
     char stringdata10[22];
     char stringdata11[16];
+    char stringdata12[16];
+    char stringdata13[7];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_ui__PersonItem_t::offsetsAndSizes) + ofs), len 
@@ -55,7 +57,9 @@ Q_CONSTINIT static const qt_meta_stringdata_ui__PersonItem_t qt_meta_stringdata_
         QT_MOC_LITERAL(98, 33),  // "const core::entities::PersonN..."
         QT_MOC_LITERAL(132, 13),  // "infoRequested"
         QT_MOC_LITERAL(146, 21),  // "requestToggleCollapse"
-        QT_MOC_LITERAL(168, 15)   // "requestRelayout"
+        QT_MOC_LITERAL(168, 15),  // "requestRelayout"
+        QT_MOC_LITERAL(184, 15),  // "positionChanged"
+        QT_MOC_LITERAL(200, 6)   // "newPos"
     },
     "ui::PersonItem",
     "requestAddSon",
@@ -68,7 +72,9 @@ Q_CONSTINIT static const qt_meta_stringdata_ui__PersonItem_t qt_meta_stringdata_
     "const core::entities::PersonNode*",
     "infoRequested",
     "requestToggleCollapse",
-    "requestRelayout"
+    "requestRelayout",
+    "positionChanged",
+    "newPos"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -79,23 +85,24 @@ Q_CONSTINIT static const uint qt_meta_data_ui__PersonItem[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       9,       // signalCount
+      10,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   68,    2, 0x06,    1 /* Public */,
-       3,    0,   69,    2, 0x06,    2 /* Public */,
-       4,    0,   70,    2, 0x06,    3 /* Public */,
-       5,    0,   71,    2, 0x06,    4 /* Public */,
-       6,    0,   72,    2, 0x06,    5 /* Public */,
-       7,    1,   73,    2, 0x06,    6 /* Public */,
-       9,    1,   76,    2, 0x06,    8 /* Public */,
-      10,    1,   79,    2, 0x06,   10 /* Public */,
-      11,    0,   82,    2, 0x06,   12 /* Public */,
+       1,    0,   74,    2, 0x06,    1 /* Public */,
+       3,    0,   75,    2, 0x06,    2 /* Public */,
+       4,    0,   76,    2, 0x06,    3 /* Public */,
+       5,    0,   77,    2, 0x06,    4 /* Public */,
+       6,    0,   78,    2, 0x06,    5 /* Public */,
+       7,    1,   79,    2, 0x06,    6 /* Public */,
+       9,    1,   82,    2, 0x06,    8 /* Public */,
+      10,    1,   85,    2, 0x06,   10 /* Public */,
+      11,    0,   88,    2, 0x06,   12 /* Public */,
+      12,    2,   89,    2, 0x06,   13 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -107,6 +114,7 @@ Q_CONSTINIT static const uint qt_meta_data_ui__PersonItem[] = {
     QMetaType::Void, 0x80000000 | 8,    2,
     QMetaType::Void, 0x80000000 | 8,    2,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 8, QMetaType::QPointF,    2,   13,
 
        0        // eod
 };
@@ -140,7 +148,11 @@ Q_CONSTINIT const QMetaObject ui::PersonItem::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const core::entities::PersonNode *, std::false_type>,
         // method 'requestRelayout'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'positionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const core::entities::PersonNode *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QPointF &, std::false_type>
     >,
     nullptr
 } };
@@ -160,6 +172,7 @@ void ui::PersonItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 6: _t->infoRequested((*reinterpret_cast< std::add_pointer_t<const core::entities::PersonNode*>>(_a[1]))); break;
         case 7: _t->requestToggleCollapse((*reinterpret_cast< std::add_pointer_t<const core::entities::PersonNode*>>(_a[1]))); break;
         case 8: _t->requestRelayout(); break;
+        case 9: _t->positionChanged((*reinterpret_cast< std::add_pointer_t<const core::entities::PersonNode*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QPointF>>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -227,6 +240,13 @@ void ui::PersonItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
                 return;
             }
         }
+        {
+            using _t = void (PersonItem::*)(const core::entities::PersonNode * , const QPointF & );
+            if (_t _q_method = &PersonItem::positionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 9;
+                return;
+            }
+        }
     }
 }
 
@@ -249,13 +269,13 @@ int ui::PersonItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 10)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 10;
     }
     return _id;
 }
@@ -315,6 +335,13 @@ void ui::PersonItem::requestToggleCollapse(const core::entities::PersonNode * _t
 void ui::PersonItem::requestRelayout()
 {
     QMetaObject::activate(this, &staticMetaObject, 8, nullptr);
+}
+
+// SIGNAL 9
+void ui::PersonItem::positionChanged(const core::entities::PersonNode * _t1, const QPointF & _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

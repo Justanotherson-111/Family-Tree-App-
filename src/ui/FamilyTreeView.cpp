@@ -1,4 +1,5 @@
 #include "FamilyTreeView.h"
+#include "ConnectionItem.h"
 #include <QWheelEvent>
 #include <QPainter>
 #include "PersonInfoWidget.h"
@@ -128,6 +129,66 @@ namespace ui
             dialog->setPerson(p);
 
             dialog->exec(); });
+
+        // connect(item, &PersonItem::positionChanged,
+        //         this,
+        //         [=](const PersonNode *p, const QPointF &newPos)
+        //         {
+        //             if (!m_items.contains(p))
+        //                 return;
+
+        //             static bool adjusting = false;
+        //             if (adjusting)
+        //                 return;
+
+        //             adjusting = true;
+
+        //             QPointF finalPos = newPos;
+
+        //             if (p->gender() == Gender::Male)
+        //             {
+        //                 for (const Marriage &m : p->marriages())
+        //                 {
+        //                     PersonNode *wife = m.wife();
+        //                     if (!m_items.contains(wife))
+        //                         continue;
+
+        //                     QPointF wpos = m_items[wife]->pos();
+        //                     wpos.setY(finalPos.y());
+        //                     m_items[wife]->setPos(wpos);
+        //                 }
+        //             }
+        //             if (PersonNode *father = p->father())
+        //             {
+        //                 for (const Marriage &marriage : father->marriages())
+        //                 {
+        //                     const auto &children = marriage.children();
+
+        //                     if (!children.contains(const_cast<PersonNode *>(p)))
+        //                         continue;
+
+        //                     if (!children.isEmpty() && children.first() == p)
+        //                     {
+        //                         for (PersonNode *sibling : children)
+        //                         {
+        //                             if (sibling == p)
+        //                                 continue;
+
+        //                             if (!m_items.contains(sibling))
+        //                                 continue;
+
+        //                             QPointF spos = m_items[sibling]->pos();
+        //                             spos.setY(finalPos.y());
+        //                             m_items[sibling]->setPos(spos);
+        //                         }
+        //                     }
+
+        //                     break;
+        //                 }
+        //             }
+
+        //             adjusting = false;
+        //         });
     }
 
     ////////////////////////////////////////////////////////
@@ -190,100 +251,86 @@ namespace ui
 
         int wx = x + NODE_W + GAP_HUSBAND_WIFE;
         int childY = y + GAP_GENERATION;
-        int prevRightX = x + NODE_W;
+
+        PersonItem *previousWifeItem = nullptr;
 
         for (const Marriage &m : marriages)
         {
             const PersonNode *wifeNode = m.wife();
 
             // ===== Wife =====
-            auto *wife = createItem(wifeNode, wx, y);
+            auto *wifeItem = createItem(wifeNode, wx, y);
 
-            connect(wife, &PersonItem::requestAddSon,
+            connect(wifeItem, &PersonItem::requestAddSon,
                     this, [=]
                     { emit personAddSonRequested(node, wifeNode); });
 
-            connect(wife, &PersonItem::requestAddDaughter,
+            connect(wifeItem, &PersonItem::requestAddDaughter,
                     this, [=]
                     { emit personAddDaughterRequested(node, wifeNode); });
 
-            // ===== Marriage line =====
-            qreal husbandRightX = maleItem->pos().x() + NODE_W;
-            qreal centerY = maleItem->pos().y() + NODE_H / 2;
+            // Husband → First Wife
+            //    Wife Chain for subsequent wives
 
-            qreal wifeLeftX = wife->pos().x();
+            if (!previousWifeItem)
+            {
+                // Husband → First Wife
+                auto *connector =
+                    new ConnectionItem(maleItem, wifeItem);
+                m_scene->addItem(connector);
+            }
+            else
+            {
+                // Wife(i-1) → Wife(i)
+                auto *connector =
+                    new ConnectionItem(previousWifeItem, wifeItem);
+                m_scene->addItem(connector);
+            }
 
-            auto *marriageLine = m_scene->addLine(
-                husbandRightX,
-                centerY,
-                wifeLeftX,
-                centerY);
+            // Layout Children
 
-            marriageLine->setZValue(0);
-
-            // ===== Children =====
             QVector<PersonItem *> children;
             int cx = wx;
 
             for (auto *child : m.children())
             {
+                PersonItem *childItem = nullptr;
+
                 if (child->gender() == Gender::Male)
                 {
                     int used = layoutMale(child, cx, childY);
-                    children.push_back(m_items[child]);
+                    childItem = m_items[child];
                     cx += used + GAP_SIBLING;
                 }
                 else
                 {
-                    auto *di = createItem(child, cx, childY);
-                    children.push_back(di);
+                    childItem = createItem(child, cx, childY);
                     cx += NODE_W + GAP_SIBLING;
                 }
+
+                children.push_back(childItem);
             }
 
-            // ===== Connectors =====
+            // Wife → Children Connection
+
             if (!children.isEmpty())
             {
-                // Mother bottom center
-                qreal motherCenterX = wife->pos().x() + NODE_W / 2;
-                qreal motherBottomY = wife->pos().y() + NODE_H;
+                auto *childrenConnector =
+                    new ConnectionItem(wifeItem,
+                                       nullptr,
+                                       children);
 
-                qreal barY = childY - CHILD_BAR_OFFSET;
-
-                // Vertical line: mother bottom → horizontal bar
-                m_scene->addLine(motherCenterX,
-                                 motherBottomY,
-                                 motherCenterX,
-                                 barY);
-
-                qreal firstChildCenter =
-                    children.first()->pos().x() + NODE_W / 2;
-
-                qreal lastChildCenter =
-                    children.last()->pos().x() + NODE_W / 2;
-
-                m_scene->addLine(firstChildCenter,
-                                 barY,
-                                 lastChildCenter,
-                                 barY);
-
-                for (auto *c : children)
-                {
-                    qreal childCenterX =
-                        c->pos().x() + NODE_W / 2;
-
-                    qreal childTopY =
-                        c->pos().y();
-
-                    m_scene->addLine(childCenterX,
-                                     barY,
-                                     childCenterX,
-                                     childTopY);
-                }
+                m_scene->addItem(childrenConnector);
             }
 
-            int wifeBlockW = std::max(NODE_W, cx - wx);
-            wx += wifeBlockW + GAP_BETWEEN_WIVES;
+            // Advance Horizontal Position
+
+            int wifeBlockWidth =
+                std::max(NODE_W, cx - wx);
+
+            wx += wifeBlockWidth + GAP_BETWEEN_WIVES;
+
+            previousWifeItem = wifeItem;
         }
 
         return wx - x;

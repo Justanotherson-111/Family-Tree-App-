@@ -13,6 +13,8 @@ add_library(ui
     PersonInspector.cpp
     PersonInfoWidget.h
     PersonInfoWidget.cpp
+    ConnectionItem.h
+    ConnectionItem.cpp
 )
 
 target_include_directories(ui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
