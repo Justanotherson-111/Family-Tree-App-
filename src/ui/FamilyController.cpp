@@ -287,16 +287,16 @@ namespace ui
 
     void FamilyController::onEdit(const PersonNode *person)
     {
-        if (!person || !m_inspector)
+        if (!person)
             return;
 
-        m_selected = person;
+        PersonInfoWidget dialog(m_view);
+        dialog.setPerson(const_cast<PersonNode *>(person));
 
-        m_inspector->setPerson(
-            const_cast<PersonNode *>(person));
-
-        m_inspector->show();
-        emit inspectorRequested();
+        if (dialog.exec() == QDialog::Accepted)
+        {
+            rebuildAll();
+        }
     }
 
     ////////////////////////////////////////////////////////
