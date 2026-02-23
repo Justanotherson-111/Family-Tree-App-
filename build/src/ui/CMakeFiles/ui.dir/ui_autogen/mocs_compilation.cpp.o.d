@@ -382,9 +382,9 @@ src/ui/CMakeFiles/ui.dir/ui_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QBrush \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qbrush.h \
- /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/../../../../../src/ui/PersonInspector.h \
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget \
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
+ /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/../../../../../src/ui/PersonInfoWidget.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
  /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/moc_FamilyTreeView.cpp \
  /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/moc_MenuController.cpp \
  /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/../../../../../src/ui/MenuController.h \
@@ -396,8 +396,8 @@ src/ui/CMakeFiles/ui.dir/ui_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QAction \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qaction.h \
  /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/moc_PersonInfoWidget.cpp \
- /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/../../../../../src/ui/PersonInfoWidget.h \
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog \
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
  /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/moc_PersonInspector.cpp \
+ /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/../../../../../src/ui/PersonInspector.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
  /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/moc_PersonItem.cpp

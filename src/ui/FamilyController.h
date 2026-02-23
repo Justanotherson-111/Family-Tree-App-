@@ -6,7 +6,7 @@
 #include "FamilyTree.h"
 #include "services/BranchAnalyzer.h"
 #include "FamilyTreeView.h"
-#include "PersonInspector.h"
+#include "PersonInfoWidget.h"
 
 namespace ui
 {
@@ -18,7 +18,7 @@ namespace ui
     public:
         explicit FamilyController(
             FamilyTreeView *view,
-            PersonInspector *inspector,
+            PersonInfoWidget *inspector,
             QObject *parent = nullptr);
 
         void setFamilyTree(core::FamilyTree *tree);
@@ -34,7 +34,7 @@ namespace ui
     private:
         // ===== Core =====
         FamilyTreeView *m_view = nullptr;
-        PersonInspector *m_inspector = nullptr;
+        PersonInfoWidget *m_inspector = nullptr;
         core::FamilyTree *m_tree = nullptr;
 
         const core::entities::PersonNode *m_selected = nullptr;

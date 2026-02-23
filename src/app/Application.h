@@ -7,7 +7,7 @@
 #include "FamilyController.h"
 #include "MenuView.h"
 #include "MenuController.h"
-#include "PersonInspector.h"
+// #include "PersonInspector.h"
 
 class QMainWindow;
 class QDockWidget;
@@ -30,9 +30,9 @@ private:
     // UI
     QMainWindow *m_window = nullptr;
     ui::FamilyTreeView *m_view = nullptr;
-    ui::PersonInspector *m_inspector = nullptr;
+    ui::PersonInfoWidget *m_inspector = nullptr;
     ui::MenuView *m_menuView = nullptr;
-    QDockWidget *m_inspectorDock = nullptr;
+    // QDockWidget *m_inspectorDock = nullptr;
 
     // Controllers
     ui::FamilyController *m_controller = nullptr;

@@ -2,13 +2,17 @@
 
 #include <QDialog>
 
+class QLineEdit;
+class QDateEdit;
+class QTextEdit;
+class QComboBox;
+class QLabel;
+class QPushButton;
+
 namespace core::entities
 {
     class PersonNode;
 }
-
-class QLabel;
-class QTextEdit;
 
 namespace ui
 {
@@ -18,13 +22,34 @@ namespace ui
 
     public:
         explicit PersonInfoWidget(QWidget *parent = nullptr);
-        void setPerson(const core::entities::PersonNode *p);
+        void setPerson(core::entities::PersonNode *p);
+
+    // private slots:
+    //     void onNameEdited();
+    //     void onGenderChanged();
+    //     void onJobEdited();
+    //     void onBirthDateChanged();
+    //     void onDeathDateChanged();
+    //     void onNoteChanged();
 
     private:
-        QLabel *m_nameLabel;
-        QLabel *m_birthLabel;
-        QLabel *m_deathLabel;
-        QLabel *m_jobLabel;
+        void setEditMode(bool enabled);
+        void updateUiFromPerson();
+
+        core::entities::PersonNode *m_person = nullptr;
+
+        QLineEdit *m_nameEdit;
+        QLineEdit *m_jobEdit;
+        QDateEdit *m_birthEdit;
+        QDateEdit *m_deathEdit;
         QTextEdit *m_noteEdit;
+        QComboBox *m_genderCombo;
+        QLabel *m_ancestralLineLabel;
+
+        bool m_editMode = false;
+
+        QPushButton *m_editButton;
+        QPushButton *m_saveButton;
+        QPushButton *m_cancelButton;
     };
 }

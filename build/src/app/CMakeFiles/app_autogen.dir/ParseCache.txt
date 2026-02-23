@@ -11,7 +11,7 @@
  mdp:/mnt/VolumeD/family-tree-app/src/ui/FamilyTreeView.h
  mdp:/mnt/VolumeD/family-tree-app/src/ui/MenuController.h
  mdp:/mnt/VolumeD/family-tree-app/src/ui/MenuView.h
- mdp:/mnt/VolumeD/family-tree-app/src/ui/PersonInspector.h
+ mdp:/mnt/VolumeD/family-tree-app/src/ui/PersonInfoWidget.h
  mdp:/mnt/VolumeD/family-tree-app/src/ui/PersonItem.h
  mdp:/usr/include/alloca.h
  mdp:/usr/include/asm-generic/errno-base.h
@@ -419,12 +419,13 @@
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtGui/qtransform.h
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtGui/qwindowdefs.h
+ mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGraphicsObject
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGraphicsScene
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGraphicsView
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMenuBar
- mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractscrollarea.h
+ mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgraphicsitem.h
  mdp:/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgraphicsscene.h

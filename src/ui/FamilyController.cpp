@@ -16,7 +16,7 @@ namespace ui
 
     FamilyController::FamilyController(
         FamilyTreeView *view,
-        PersonInspector *inspector,
+        PersonInfoWidget *inspector,
         QObject *parent)
         : QObject(parent),
           m_view(view),
@@ -44,18 +44,13 @@ namespace ui
 
         if (m_inspector)
         {
-            connect(m_inspector,
-                    &PersonInspector::personEdited,
-                    this,
-                    [this](auto *p, bool relayout)
+            connect(m_inspector, &QDialog::accepted,
+                    this, [this]()
                     {
-                        if (relayout)
-                            rebuildAll();
-                        else
-                            m_view->updatePerson(p);
+                    if (!m_selected)
+                        return;
 
-                        updateVisualState();
-                    });
+                    rebuildAll(); });
         }
     }
 
@@ -300,6 +295,7 @@ namespace ui
         m_inspector->setPerson(
             const_cast<PersonNode *>(person));
 
+        m_inspector->show();
         emit inspectorRequested();
     }
 

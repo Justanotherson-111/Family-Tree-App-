@@ -44,12 +44,12 @@ namespace ui
         static constexpr int NODE_W = 220;
         static constexpr int NODE_H = 110;
 
-        static constexpr int GAP_HUSBAND_WIFE = 120;
-        static constexpr int GAP_BETWEEN_WIVES = 120;
-        static constexpr int GAP_SIBLING = 120;
-        static constexpr int GAP_GENERATION = 160;
+        static constexpr int GAP_HUSBAND_WIFE = 30;
+        static constexpr int GAP_BETWEEN_WIVES = 30;
+        static constexpr int GAP_SIBLING = 30;
+        static constexpr int GAP_GENERATION = 140;
         static constexpr int CHILD_BAR_OFFSET = 20;
-        static constexpr int MARRIAGE_MARGIN = 12;
+        static constexpr int MARRIAGE_MARGIN = 10;
         static constexpr int VERTICAL_MARGIN = 8;
         QGraphicsScene *m_scene = nullptr;
         const core::FamilyTree *m_tree = nullptr;

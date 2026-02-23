@@ -66,7 +66,12 @@ namespace ui
 
         layoutMale(m_tree->ancestor(), 0, 0);
 
-        m_scene->setSceneRect(m_scene->itemsBoundingRect());
+        QRectF bounds = m_scene->itemsBoundingRect();
+
+        // Add padding space around tree | left, top, right, bottom
+        bounds.adjust(-400, -400, 400, 1000);
+
+        m_scene->setSceneRect(bounds);
 
         // Restore zoom
         setTransform(oldTransform);
@@ -124,11 +129,13 @@ namespace ui
         connect(item, &PersonItem::infoRequested,
                 this, [=](const PersonNode *p)
                 {
-            auto *dialog = new PersonInfoWidget(this);
+                PersonInfoWidget dialog(this);
+                dialog.setPerson(const_cast<PersonNode *>(p));
 
-            dialog->setPerson(p);
-
-            dialog->exec(); });
+                if (dialog.exec() == QDialog::Accepted)
+                {
+                    updatePerson(p);
+                } });
 
         // connect(item, &PersonItem::positionChanged,
         //         this,

@@ -4,7 +4,7 @@
   /mnt/VolumeD/family-tree-app/src/core/entities/PersonNode.h \
   /mnt/VolumeD/family-tree-app/src/core/services/BranchAnalyzer.h \
   /mnt/VolumeD/family-tree-app/src/ui/FamilyTreeView.h \
-  /mnt/VolumeD/family-tree-app/src/ui/PersonInspector.h \
+  /mnt/VolumeD/family-tree-app/src/ui/PersonInfoWidget.h \
   /mnt/VolumeD/family-tree-app/src/ui/PersonItem.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
@@ -411,11 +411,12 @@
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtransform.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qwindowdefs.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGraphicsObject \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGraphicsScene \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGraphicsView \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractscrollarea.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgraphicsitem.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgraphicsscene.h \

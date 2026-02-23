@@ -372,9 +372,9 @@ src/app/CMakeFiles/app.dir/Application.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qbrush.h \
  /mnt/VolumeD/family-tree-app/src/ui/FamilyController.h \
  /mnt/VolumeD/family-tree-app/src/core/services/BranchAnalyzer.h \
- /mnt/VolumeD/family-tree-app/src/ui/PersonInspector.h \
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget \
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
+ /mnt/VolumeD/family-tree-app/src/ui/PersonInfoWidget.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
  /mnt/VolumeD/family-tree-app/src/ui/MenuView.h \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMenuBar \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmenubar.h \

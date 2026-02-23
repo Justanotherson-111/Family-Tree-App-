@@ -65,24 +65,25 @@ void Application::setupWindow()
 
     // ===== Views =====
     m_view = new ui::FamilyTreeView(m_window);
-    m_inspector = new ui::PersonInspector(m_window);
+    // m_inspector = new ui::PersonInspector(m_window);
     m_menuView = new ui::MenuView(m_window);
 
     // ===== Central =====
     m_window->setCentralWidget(m_view);
 
     // ===== Inspector Dock =====
-    m_inspectorDock = new QDockWidget("Inspector", m_window);
-    m_inspectorDock->setWidget(m_inspector);
+    // m_inspectorDock = new QDockWidget("Inspector", m_window);
+    // m_inspectorDock->setWidget(m_inspector);
 
-    m_inspectorDock->setAllowedAreas(
-        Qt::LeftDockWidgetArea |
-        Qt::RightDockWidgetArea);
+    // m_inspectorDock->setAllowedAreas(
+    //     Qt::LeftDockWidgetArea |
+    //     Qt::RightDockWidgetArea);
 
-    m_window->addDockWidget(
-        Qt::RightDockWidgetArea,
-        m_inspectorDock);
+    // m_window->addDockWidget(
+    //     Qt::RightDockWidgetArea,
+    //     m_inspectorDock);
 
+    // ====== Menu Bar =====
     m_window->setMenuBar(m_menuView);
     // ===== Window config =====
     m_window->resize(1200, 800);
@@ -116,10 +117,10 @@ void Application::setupControllers()
             &ui::MenuView::exitRequested,
             m_window,
             &QMainWindow::close);
-    connect(m_controller,
-            &ui::FamilyController::inspectorRequested,
-            this,
-            &Application::showInspector);
+    // connect(m_controller,
+    //         &ui::FamilyController::inspectorRequested,
+    //         this,
+    //         &Application::showInspector);
 }
 
 ////////////////////////////////////////////////////////
@@ -133,11 +134,11 @@ void Application::start()
 
     m_window->show();
 }
-void Application::showInspector()
-{
-    if (!m_inspectorDock)
-        return;
+// void Application::showInspector()
+// {
+//     if (!m_inspectorDock)
+//         return;
 
-    m_inspectorDock->show();
-    m_inspectorDock->raise();
-}
+//     m_inspectorDock->show();
+//     m_inspectorDock->raise();
+// }
