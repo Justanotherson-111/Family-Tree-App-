@@ -358,6 +358,8 @@ src/ui/CMakeFiles/ui.dir/MenuController.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QSet \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qset.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QRubberBand \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
  /mnt/VolumeD/family-tree-app/src/core/FamilyTree.h \
  /mnt/VolumeD/family-tree-app/src/core/entities/PersonNode.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
@@ -422,4 +424,10 @@ src/ui/CMakeFiles/ui.dir/MenuController.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qpagesize.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qpageranges.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QPainter \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qpainter.h
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qpainter.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QInputDialog \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qinputdialog.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlineedit.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextcursor.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextdocument.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextformat.h

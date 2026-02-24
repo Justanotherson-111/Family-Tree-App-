@@ -4,13 +4,13 @@
 #include <QGraphicsScene>
 #include <QMap>
 #include <QSet>
+#include <QRubberBand>
 
 #include "FamilyTree.h"
 #include "PersonItem.h"
 
 namespace ui
 {
-
     class FamilyTreeView : public QGraphicsView
     {
         Q_OBJECT
@@ -27,6 +27,7 @@ namespace ui
 
         QGraphicsScene *scenePtr() const { return m_scene; }
         void zoomToFit();
+        void enableCropMode(bool enabled);
 
     signals:
         void personClicked(const core::entities::PersonNode *);
@@ -35,9 +36,13 @@ namespace ui
         void personAddWifeRequested(const core::entities::PersonNode *);
         void personRemoveRequested(const core::entities::PersonNode *);
         void personEditRequested(const core::entities::PersonNode *);
+        void cropAreaSelected(const QRectF &sceneRect);
 
     protected:
         void wheelEvent(QWheelEvent *event) override;
+        void mousePressEvent(QMouseEvent *event) override;
+        void mouseMoveEvent(QMouseEvent *event) override;
+        void mouseReleaseEvent(QMouseEvent *event) override;
 
     private:
         // ===== Layout constants =====
@@ -66,6 +71,10 @@ namespace ui
         void connectCommonSignals(PersonItem *item, const core::entities::PersonNode *p);
 
         void rebuild();
-        };
+        // ===== Crop export support =====
+        bool m_cropMode = false;
+        QRubberBand *m_rubberBand = nullptr;
+        QPoint m_cropOrigin;
+    };
 
 }

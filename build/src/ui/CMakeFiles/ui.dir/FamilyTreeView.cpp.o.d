@@ -350,6 +350,8 @@ src/ui/CMakeFiles/ui.dir/FamilyTreeView.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QSet \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qset.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QRubberBand \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
  /mnt/VolumeD/family-tree-app/src/core/FamilyTree.h \
  /mnt/VolumeD/family-tree-app/src/core/entities/PersonNode.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
@@ -400,4 +402,5 @@ src/ui/CMakeFiles/ui.dir/FamilyTreeView.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qpainter.h \
  /mnt/VolumeD/family-tree-app/src/ui/PersonInfoWidget.h \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QDialog \
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/QMouseEvent

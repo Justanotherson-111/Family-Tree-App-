@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_ui__FamilyTreeView_t {
-    uint offsetsAndSizes[18];
+    uint offsetsAndSizes[22];
     char stringdata0[19];
     char stringdata1[14];
     char stringdata2[1];
@@ -36,6 +36,8 @@ struct qt_meta_stringdata_ui__FamilyTreeView_t {
     char stringdata6[23];
     char stringdata7[22];
     char stringdata8[20];
+    char stringdata9[17];
+    char stringdata10[10];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_ui__FamilyTreeView_t::offsetsAndSizes) + ofs), len 
@@ -49,7 +51,9 @@ Q_CONSTINIT static const qt_meta_stringdata_ui__FamilyTreeView_t qt_meta_stringd
         QT_MOC_LITERAL(90, 26),  // "personAddDaughterRequested"
         QT_MOC_LITERAL(117, 22),  // "personAddWifeRequested"
         QT_MOC_LITERAL(140, 21),  // "personRemoveRequested"
-        QT_MOC_LITERAL(162, 19)   // "personEditRequested"
+        QT_MOC_LITERAL(162, 19),  // "personEditRequested"
+        QT_MOC_LITERAL(182, 16),  // "cropAreaSelected"
+        QT_MOC_LITERAL(199, 9)   // "sceneRect"
     },
     "ui::FamilyTreeView",
     "personClicked",
@@ -59,7 +63,9 @@ Q_CONSTINIT static const qt_meta_stringdata_ui__FamilyTreeView_t qt_meta_stringd
     "personAddDaughterRequested",
     "personAddWifeRequested",
     "personRemoveRequested",
-    "personEditRequested"
+    "personEditRequested",
+    "cropAreaSelected",
+    "sceneRect"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -70,20 +76,21 @@ Q_CONSTINIT static const uint qt_meta_data_ui__FamilyTreeView[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       6,       // signalCount
+       7,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   50,    2, 0x06,    1 /* Public */,
-       4,    2,   53,    2, 0x06,    3 /* Public */,
-       5,    2,   58,    2, 0x06,    6 /* Public */,
-       6,    1,   63,    2, 0x06,    9 /* Public */,
-       7,    1,   66,    2, 0x06,   11 /* Public */,
-       8,    1,   69,    2, 0x06,   13 /* Public */,
+       1,    1,   56,    2, 0x06,    1 /* Public */,
+       4,    2,   59,    2, 0x06,    3 /* Public */,
+       5,    2,   64,    2, 0x06,    6 /* Public */,
+       6,    1,   69,    2, 0x06,    9 /* Public */,
+       7,    1,   72,    2, 0x06,   11 /* Public */,
+       8,    1,   75,    2, 0x06,   13 /* Public */,
+       9,    1,   78,    2, 0x06,   15 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    2,
@@ -92,6 +99,7 @@ Q_CONSTINIT static const uint qt_meta_data_ui__FamilyTreeView[] = {
     QMetaType::Void, 0x80000000 | 3,    2,
     QMetaType::Void, 0x80000000 | 3,    2,
     QMetaType::Void, 0x80000000 | 3,    2,
+    QMetaType::Void, QMetaType::QRectF,   10,
 
        0        // eod
 };
@@ -124,7 +132,10 @@ Q_CONSTINIT const QMetaObject ui::FamilyTreeView::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const core::entities::PersonNode *, std::false_type>,
         // method 'personEditRequested'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const core::entities::PersonNode *, std::false_type>
+        QtPrivate::TypeAndForceComplete<const core::entities::PersonNode *, std::false_type>,
+        // method 'cropAreaSelected'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QRectF &, std::false_type>
     >,
     nullptr
 } };
@@ -141,6 +152,7 @@ void ui::FamilyTreeView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 3: _t->personAddWifeRequested((*reinterpret_cast< std::add_pointer_t<const core::entities::PersonNode*>>(_a[1]))); break;
         case 4: _t->personRemoveRequested((*reinterpret_cast< std::add_pointer_t<const core::entities::PersonNode*>>(_a[1]))); break;
         case 5: _t->personEditRequested((*reinterpret_cast< std::add_pointer_t<const core::entities::PersonNode*>>(_a[1]))); break;
+        case 6: _t->cropAreaSelected((*reinterpret_cast< std::add_pointer_t<QRectF>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -187,6 +199,13 @@ void ui::FamilyTreeView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
                 return;
             }
         }
+        {
+            using _t = void (FamilyTreeView::*)(const QRectF & );
+            if (_t _q_method = &FamilyTreeView::cropAreaSelected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 6;
+                return;
+            }
+        }
     }
 }
 
@@ -209,13 +228,13 @@ int ui::FamilyTreeView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }
@@ -260,6 +279,13 @@ void ui::FamilyTreeView::personEditRequested(const core::entities::PersonNode * 
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 5, _a);
+}
+
+// SIGNAL 6
+void ui::FamilyTreeView::cropAreaSelected(const QRectF & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

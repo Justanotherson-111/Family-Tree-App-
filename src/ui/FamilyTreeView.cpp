@@ -3,7 +3,8 @@
 #include <QWheelEvent>
 #include <QPainter>
 #include "PersonInfoWidget.h"
-
+#include <QRubberBand>
+#include <QMouseEvent>
 namespace ui
 {
 
@@ -359,5 +360,73 @@ namespace ui
         if (auto it = m_items.find(p); it != m_items.end())
             it.value()->update();
     }
+    ////////////////////////////////////////////////////////
+    void FamilyTreeView::enableCropMode(bool enabled)
+    {
+        m_cropMode = enabled;
 
+        if (enabled)
+        {
+            setCursor(Qt::CrossCursor);
+            setDragMode(QGraphicsView::NoDrag);
+        }
+        else
+        {
+            unsetCursor();
+            setDragMode(QGraphicsView::ScrollHandDrag);
+        }
+    }
+    void FamilyTreeView::mousePressEvent(QMouseEvent *event)
+    {
+        if (m_cropMode && event->button() == Qt::LeftButton)
+        {
+            m_cropOrigin = event->pos();
+
+            if (!m_rubberBand)
+                m_rubberBand = new QRubberBand(QRubberBand::Rectangle, this);
+
+            m_rubberBand->setGeometry(QRect(m_cropOrigin, QSize()));
+            m_rubberBand->show();
+            return;
+        }
+
+        QGraphicsView::mousePressEvent(event);
+    }
+    void FamilyTreeView::mouseMoveEvent(QMouseEvent *event)
+    {
+        if (m_cropMode && m_rubberBand)
+        {
+            m_rubberBand->setGeometry(
+                QRect(m_cropOrigin, event->pos()).normalized());
+            return;
+        }
+
+        QGraphicsView::mouseMoveEvent(event);
+    }
+    void FamilyTreeView::mouseReleaseEvent(QMouseEvent *event)
+    {
+        if (m_cropMode && m_rubberBand)
+        {
+            QRect viewRect = m_rubberBand->geometry();
+            m_rubberBand->hide();
+            if (m_rubberBand)
+            {
+                delete m_rubberBand;
+                m_rubberBand = nullptr;
+            }
+
+            QPointF topLeft = mapToScene(viewRect.topLeft());
+            QPointF bottomRight = mapToScene(viewRect.bottomRight());
+
+            QRectF sceneRect(topLeft, bottomRight);
+            sceneRect = sceneRect.normalized();
+
+            enableCropMode(false);
+
+            emit cropAreaSelected(sceneRect);
+            return;
+        }
+
+        QGraphicsView::mouseReleaseEvent(event);
+    }
 } // namespace ui

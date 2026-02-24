@@ -12,6 +12,7 @@
 #include <QPrinter>
 #include <QPainter>
 #include <QGraphicsScene>
+#include <QInputDialog>
 
 using namespace ui;
 using namespace core;
@@ -45,6 +46,9 @@ MenuController::MenuController(MenuView *view,
 
     connect(view, &MenuView::exportPdfRequested,
             this, &MenuController::onExportPdf);
+
+    connect(m_treeView, &FamilyTreeView::cropAreaSelected,
+            this, &MenuController::handleCropExport);
 }
 
 ////////////////////////////////////////////////////////
@@ -187,6 +191,106 @@ void MenuController::onExportPdf()
     if (!m_treeView)
         return;
 
+    QStringList options;
+    options << "Whole Tree"
+            << "Selected Area"
+            << "Visible Area"
+            << "Multi-page (A4 Tiled)";
+
+    bool ok = false;
+
+    QString choice = QInputDialog::getItem(
+        m_view,
+        tr("Export Mode"),
+        tr("Choose export type:"),
+        options,
+        0,
+        false,
+        &ok);
+
+    if (!ok)
+        return;
+
+    if (choice == "Whole Tree")
+        exportWholeScene();
+    else if (choice == "Selected Area")
+        exportSelectedArea();
+    else if (choice == "Visible Area")
+        exportVisibleArea();
+    else
+        exportTiled();
+}
+
+//////////////////////////////////////////////////////
+// HELPERS
+//////////////////////////////////////////////////////
+void MenuController::exportWholeScene()
+{
+    QString path = QFileDialog::getSaveFileName(
+        m_view,
+        tr("Export PDF"),
+        {},
+        tr("PDF (*.pdf)"));
+
+    if (path.isEmpty())
+        return;
+
+    if (!path.endsWith(".pdf"))
+        path += ".pdf";
+
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setOutputFileName(path);
+
+    QGraphicsScene *scene = m_treeView->scenePtr();
+
+    QRectF rect =
+        scene->itemsBoundingRect().adjusted(-20, -20, 20, 20);
+
+    printer.setPageSize(QPageSize(
+        QSizeF(rect.width(), rect.height()),
+        QPageSize::Point));
+
+    QPainter painter(&printer);
+    scene->render(&painter, QRectF(), rect);
+}
+void MenuController::exportVisibleArea()
+{
+    QString path = QFileDialog::getSaveFileName(
+        m_view,
+        tr("Export PDF"),
+        {},
+        tr("PDF (*.pdf)"));
+
+    if (path.isEmpty())
+        return;
+
+    if (!path.endsWith(".pdf"))
+        path += ".pdf";
+
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setOutputFileName(path);
+
+    QRectF visible =
+        m_treeView->mapToScene(
+                      m_treeView->viewport()->rect())
+            .boundingRect();
+
+    printer.setPageSize(QPageSize(
+        QSizeF(visible.width(), visible.height()),
+        QPageSize::Point));
+
+    QPainter painter(&printer);
+    m_treeView->scenePtr()->render(&painter,
+                                   QRectF(),
+                                   visible);
+}
+void MenuController::handleCropExport(const QRectF &rect)
+{
+    if (rect.width() < 10 || rect.height() < 10)
+        return;
+
     QString path = QFileDialog::getSaveFileName(
         m_view,
         tr("Export PDF"),
@@ -201,31 +305,89 @@ void MenuController::onExportPdf()
 
     QGraphicsScene *scene = m_treeView->scenePtr();
 
-    // Get tight bounds of the tree
-    QRectF sceneRect = scene->itemsBoundingRect();
-
-    // Optional margin (looks nicer)
-    const qreal margin = 20;
-    sceneRect.adjust(-margin, -margin, margin, margin);
-
-    scene->setSceneRect(sceneRect);
-
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setOutputFileName(path);
+    printer.setFullPage(true);
+    printer.setPageMargins(QMarginsF(0, 0, 0, 0));
 
-    // ✅ Page size equals scene size
-    QPageSize pageSize(
-        QSizeF(sceneRect.width(), sceneRect.height()),
-        QPageSize::Point);
-    printer.setPageSize(pageSize);
+    // 🔥 Correct DPI conversion
+    double dpi = printer.resolution();
+    double widthPoints = (rect.width() / dpi) * 72.0;
+    double heightPoints = (rect.height() / dpi) * 72.0;
+
+    printer.setPageSize(QPageSize(
+        QSizeF(widthPoints, heightPoints),
+        QPageSize::Point));
 
     QPainter painter(&printer);
     if (!painter.isActive())
         return;
 
-    // ✅ 1:1 render (no scaling)
-    scene->render(&painter);
+    scene->render(
+        &painter,
+        QRectF(0, 0, rect.width(), rect.height()),
+        rect);
+}
+void MenuController::exportTiled()
+{
+    QString path = QFileDialog::getSaveFileName(
+        m_view,
+        tr("Export PDF"),
+        {},
+        tr("PDF (*.pdf)"));
 
-    painter.end();
+    if (path.isEmpty())
+        return;
+
+    if (!path.endsWith(".pdf"))
+        path += ".pdf";
+
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setOutputFileName(path);
+
+    printer.setPageSize(QPageSize(QPageSize::A4));
+    printer.setFullPage(true);
+
+    QGraphicsScene *scene = m_treeView->scenePtr();
+    QRectF full = scene->itemsBoundingRect();
+
+    QPainter painter(&printer);
+    if (!painter.isActive())
+        return;
+    QRectF pageRect = printer.pageRect(QPrinter::Point);
+
+    for (qreal y = full.top(); y < full.bottom(); y += pageRect.height())
+    {
+        for (qreal x = full.left(); x < full.right(); x += pageRect.width())
+        {
+            QRectF tile(x, y,
+                        pageRect.width(),
+                        pageRect.height());
+
+            scene->render(&painter,
+                          pageRect,
+                          tile);
+
+            bool isLastTile =
+                (x + pageRect.width() >= full.right()) &&
+                (y + pageRect.height() >= full.bottom());
+
+            if (!isLastTile)
+                printer.newPage();
+        }
+    }
+}
+void MenuController::exportSelectedArea()
+{
+    if (!m_treeView)
+        return;
+
+    QMessageBox::information(
+        m_view,
+        tr("Select Area"),
+        tr("Drag to select export area."));
+
+    m_treeView->enableCropMode(true);
 }

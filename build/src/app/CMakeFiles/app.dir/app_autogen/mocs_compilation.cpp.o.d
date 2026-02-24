@@ -367,6 +367,8 @@ src/app/CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgraphicsscene.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QMap \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QRubberBand \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
  /mnt/VolumeD/family-tree-app/src/ui/PersonItem.h \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGraphicsObject \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgraphicsitem.h \

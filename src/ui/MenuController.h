@@ -14,6 +14,13 @@ namespace ui
 
 namespace ui
 {
+    enum class PdfExportMode
+    {
+        WholeScene,
+        SelectedArea,
+        VisibleArea,
+        TiledPages
+    };
 
     class MenuController : public QObject
     {
@@ -40,6 +47,14 @@ namespace ui
         void onLoad();
         void onDelete();
         void onExportPdf();
+
+        void exportWholeScene();
+        void exportSelectedArea();
+        void exportVisibleArea();
+        void exportTiled();
+
+    private slots:
+        void handleCropExport(const QRectF &rect);
     };
 
 }

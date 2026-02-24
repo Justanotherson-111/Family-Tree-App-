@@ -377,6 +377,8 @@ src/ui/CMakeFiles/ui.dir/ui_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgraphicsscene.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QMap \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QRubberBand \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
  /mnt/VolumeD/family-tree-app/build/src/ui/ui_autogen/EWIEGA46WW/../../../../../src/ui/PersonItem.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QPen \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h \
